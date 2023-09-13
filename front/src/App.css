@@ -6,7 +6,10 @@ body{
   font-size: 14px;
   background-image: linear-gradient(to right, #f23637, #fc0b68);
 }
-
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .header{
   align-items: center;
   background: #2d394b;
@@ -14,9 +17,6 @@ body{
   height: 60px;
   left: 0;
   padding: 10px 70px 10px 30px;
-  position: sticky;
-  right: 0;
-  top: 0;
 }
 .logo{
   width: 65px;
@@ -31,7 +31,6 @@ body{
 }
 .main-title{
   color: #fff;
-
   position: absolute;
   top: 40px;
   font-weight: lighter;
@@ -40,7 +39,42 @@ body{
   z-index: 1;
 }
 .artists{
-  margin-top: 40px;
+  margin: 40px 0 70px;
   display: flex;
   justify-content: space-between;
 }
+.artist-item{
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  color: #828590;
+  background: #ffffff;
+  border-radius: 6px;
+  transition: .3s;
+}
+.artist-item-two{
+  padding: 20px;
+}
+.artist-img{
+  width: 400px;
+  height: 400px;
+}
+.artist-title{
+  color: #fc0b68;
+  letter-spacing: 3px;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+.artist-span{
+  display: inline-block;
+  padding: 0 9px;
+  font-weight: 100;
+  color: #ffffff;
+  background-image: -webkit-linear-gradient(left, #f23637 0%, #fc0b68 100%);
+  background-image: linear-gradient(to right, #f23637 0%, #fc0b68 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF23637', endColorstr='#FFFC0B68', GradientType=1);
+  border-radius: 2px;
+}
+
