@@ -18,6 +18,10 @@ const TrackSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    number: {
+        type: Number,
+        required: true
+    },
     duration: String,
 });
 

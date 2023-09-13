@@ -6,6 +6,7 @@ import albumsReducer from "./routers/albums";
 import tracksReducer from "./routers/tracks";
 import usersRouter from "./routers/users";
 import tracksHistoryRouter from "./routers/tracksHistory";
+import config from "./config";
 
 
 const app = express();
@@ -21,7 +22,7 @@ app.use('/users', usersRouter);
 app.use('/track_history', tracksHistoryRouter);
 
 const run = async () => {
-    await mongoose.connect('mongodb://localhost/shop');
+    await mongoose.connect(config.db);
 
     app.listen(port, () => {
         console.log(`Server started on ${port} port`);
