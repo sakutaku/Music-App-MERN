@@ -1,1 +1,46 @@
+body{
+  margin: 0;
+  padding: 0;
+  color: #243238;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  font-size: 14px;
+  background-image: linear-gradient(to right, #f23637, #fc0b68);
+}
 
+.header{
+  align-items: center;
+  background: #2d394b;
+  display: flex;
+  height: 60px;
+  left: 0;
+  padding: 10px 70px 10px 30px;
+  position: sticky;
+  right: 0;
+  top: 0;
+}
+.logo{
+  width: 65px;
+  height: 65px;
+}
+.main{
+  position: relative;
+}
+.main-img{
+  padding: 120px 0;
+  background: url(https://livedemo00.template-help.com/wt_prod-20412/images/breadcrumbs-1920x440.jpg) no-repeat center;
+}
+.main-title{
+  color: #fff;
+
+  position: absolute;
+  top: 40px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+  left: 40px;
+  z-index: 1;
+}
+.artists{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
