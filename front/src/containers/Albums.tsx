@@ -30,7 +30,7 @@ const Albums = () => {
 
   if(!show) {
     items = album.map((alb) => (
-      <Link to='/' className="album-link">
+      <Link to={`/tracks/${alb._id}`} className="album-link">
         <div className="album-wrap">
           <div>
             <img src={'http://localhost:8000/' + alb.image} alt={alb.image} className="album-img"/>
