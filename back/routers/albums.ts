@@ -1,10 +1,10 @@
 import express from "express";
 import Album from "../modeles/Album";
 import {imagesUpload} from "../multer";
-import {IAlbumMutation} from "../type";
+import {IAlbumMutation, INewAlbums} from "../type";
 import mongoose from "mongoose";
-import Track from "../modeles/Track";
 import Artist from "../modeles/Artist";
+import Track from "../modeles/Track";
 
 const albumsReducer = express.Router();
 
@@ -14,12 +14,28 @@ albumsReducer.get('/', async (req, res) => {
             const albums = await Album.find({artist: req.query.artist}).sort({year: -1});
             const artist = await Artist.findById(req.query.artist);
 
+            const newAlbums: INewAlbums[] = [];
+
+            for(const alb of albums) {
+                const numberOfTracks = await Track.countDocuments({album: alb._id});
+
+                const obj = {
+                    _id: String(alb._id),
+                    title: alb.title,
+                    artist: String(alb.artist),
+                    year: alb.year,
+                    image: alb.image,
+                    tracks: numberOfTracks
+                };
+                newAlbums.push(obj);
+            }
+
             if(!artist) {
                 return res.status(401).send({error: 'No artist present!'});
             }
 
             const albumsInfo = {
-                albums,
+                albums: newAlbums,
                 artist: artist.title,
             };
 
@@ -51,7 +67,7 @@ albumsReducer.post('/', imagesUpload.single('image'), async (req, res, next) => 
     const albumData: IAlbumMutation = {
         artist: req.body.artist,
         title: req.body.title,
-        year: req.body.year,
+        year: Number(req.body.year),
         image: req.file ? req.file.filename : null,
     };
 

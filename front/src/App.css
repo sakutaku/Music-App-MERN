@@ -138,8 +138,9 @@ body{
   font-size: 25px;
 }
 
-.album-txt h5{
+.tracks-year{
   font-size: 20px;
+  margin: 12px 0;
 }
 .track-item{
   display: flex;
@@ -185,4 +186,8 @@ body{
   font-size: 20px;
   letter-spacing: 5px;
   text-align: center;
+}
+.tracks-total{
+  margin: 5px 0;
+  font-size: 15px;
 }

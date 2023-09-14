@@ -18,6 +18,7 @@ tracksReducer.get('/', async (req, res) => {
             }
 
             const arr = String(album.artist).split(',');
+
             const  replace = /[']/g;
             const final = arr[1].replace(replace, '');
             const name = final.slice(10);

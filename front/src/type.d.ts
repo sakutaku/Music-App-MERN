@@ -8,7 +8,8 @@ export interface IAlbum{
   _id: string,
   image: string,
   title: string,
-  year: string
+  year: string,
+  tracks: number
 }
 
 export interface ITrack {

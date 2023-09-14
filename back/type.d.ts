@@ -7,7 +7,7 @@ export interface IArtistMutation {
 export interface IAlbumMutation {
     artist: string;
     title: string;
-    year: string;
+    year: number;
     image: string | null;
 }
 
@@ -37,6 +37,14 @@ export interface ITrackHistoryMutation {
     datetime: string;
 }
 
+export interface INewAlbums {
+    _id: string,
+    title: string,
+    artist: string,
+    year: number,
+    image: string | undefined,
+    tracks: number
+}
 
 
 

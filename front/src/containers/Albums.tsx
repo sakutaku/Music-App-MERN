@@ -29,7 +29,10 @@ const Albums = () => {
           </div>
           <div className="album-txt">
             <h3>{alb.title}</h3>
-            <h5>Year: {alb.year}</h5>
+            <h5 className="tracks-year">Year: {alb.year}</h5>
+            <h5 className="tracks-total">
+              <i>Total tracks: {alb.tracks}</i>
+            </h5>
           </div>
         </div>
       </Link>
