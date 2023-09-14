@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import express from "express";
-import {IArtistTracks, ITrackMutation, ITracksModifies} from "../type";
+import {IArtistTracks, ITrackMutation} from "../type";
 import Album from "../modeles/Album";
 import Track from "../modeles/Track";
 
@@ -22,22 +22,13 @@ tracksReducer.get('/', async (req, res) => {
             const final = arr[1].replace(replace, '');
             const name = final.slice(10);
 
-            const allTracks: ITracksModifies[] = [];
-            tracks.forEach((track) => {
-                const newObj = {
-                    _id: String(track._id),
-                    title: track.title,
-                    number: track.number,
-                    duration: track.duration,
-                    artist: name,
-                    album: albumTitle.title
-                };
+            const tracksInfo = {
+                allTracks: tracks,
+                album: albumTitle.title,
+                artist: name,
+            };
 
-                allTracks.push(newObj);
-            })
-            console.log(allTracks);
-
-            res.send(allTracks);
+            res.send(tracksInfo);
         } else if (req.query.artist) {
             const tracksArtist = await Album.find({artist: req.query.artist});
             const tracks = await Track.find();
@@ -73,6 +64,7 @@ tracksReducer.post('/', async (req, res, next) => {
         album: req.body.album,
         title: req.body.title,
         duration: req.body.duration,
+        number: req.body.number
     };
 
     try {

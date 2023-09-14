@@ -17,3 +17,9 @@ export interface ITrack {
   title: string,
   duration: string
 }
+
+export interface ITrackMutation {
+  allTracks: ITrack[],
+  album: string,
+  artist: string
+}
