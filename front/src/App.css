@@ -31,7 +31,11 @@ body{
 }
 .main-img{
   padding: 120px 0;
-  background: url(https://livedemo00.template-help.com/wt_prod-20412/images/breadcrumbs-1920x440.jpg) no-repeat center;
+  background-image: url(https://livedemo00.template-help.com/wt_prod-20412/images/breadcrumbs-1920x440.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .main-title{
   color: #fff;
@@ -118,6 +122,9 @@ body{
   transition: .3s;
   cursor: pointer;
 }
+.album-wrap:hover{
+  background: linear-gradient(to right, #f23637, #fc0b68);
+}
 .album-link{
   text-decoration: none;
 }
@@ -191,3 +198,4 @@ body{
   margin: 5px 0;
   font-size: 15px;
 }
+
