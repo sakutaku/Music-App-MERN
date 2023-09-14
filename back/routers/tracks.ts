@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import express from "express";
-import Track from "../modeles/Track";
-import {IArtistTracks, ITrackMutation} from "../type";
+import {IArtistTracks, ITrackMutation, ITracksModifies} from "../type";
 import Album from "../modeles/Album";
+import Track from "../modeles/Track";
 
 const tracksReducer = express.Router();
 
@@ -10,11 +10,37 @@ tracksReducer.get('/', async (req, res) => {
     try {
         if(req.query.album) {
             const tracks = await Track.find({album: req.query.album});
-            res.send(tracks);
+            const albumTitle = await Album.findById(req.query.album);
+            const album = await Album.findById(req.query.album).populate('artist');
+
+            if(!album || !albumTitle) {
+                return res.status(401).send({error: 'No album present!'});
+            }
+
+            const arr = String(album.artist).split(',');
+            const  replace = /[']/g;
+            const final = arr[1].replace(replace, '');
+            const name = final.slice(10);
+
+            const allTracks: ITracksModifies[] = [];
+            tracks.forEach((track) => {
+                const newObj = {
+                    _id: String(track._id),
+                    title: track.title,
+                    number: track.number,
+                    duration: track.duration,
+                    artist: name,
+                    album: albumTitle.title
+                };
+
+                allTracks.push(newObj);
+            })
+            console.log(allTracks);
+
+            res.send(allTracks);
         } else if (req.query.artist) {
             const tracksArtist = await Album.find({artist: req.query.artist});
             const tracks = await Track.find();
-
             const newArr: IArtistTracks[] = [];
 
             tracks.filter((oneTr) => {

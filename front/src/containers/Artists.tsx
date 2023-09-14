@@ -20,7 +20,7 @@ const Artists = () => {
   if(!show) {
     items = artists.map((artist) => (
       <ArtistItem
-        key={artist.id}
+        key={artist._id}
         artist={artist}
       />
     ));

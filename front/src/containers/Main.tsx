@@ -11,7 +11,6 @@ const Main = () => {
       <div className="container">
         <Artists/>
       </div>
-
     </>
   );
 };
