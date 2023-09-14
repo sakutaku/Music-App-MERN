@@ -5,13 +5,12 @@ import { fetchAlbum } from '../store/albumsThunk';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import Spinner from '../components/Spinner/Spinner';
-import TrackItem from '../components/TrackItem';
 
 
 const Albums = () => {
   const { id } = useParams() as {id: string};
   const dispatch = useAppDispatch();
-  const album = useSelector((state: RootState) => state.albums.album);
+  const album = useSelector((state: RootState) => state.albums.albums);
   const artists = useSelector((state: RootState) => state.artists.allArtists);
   const show = useSelector((state: RootState) => state.artists.fetchLoading);
 
@@ -31,7 +30,7 @@ const Albums = () => {
 
   if(!show) {
     items = album.map((alb) => (
-      <Link to={`/tracks/${alb._id}`} className="album-link">
+      <Link to={`/tracks/${alb._id}`} className="album-link" key={alb._id}>
         <div className="album-wrap">
           <div>
             <img src={'http://localhost:8000/' + alb.image} alt={alb.image} className="album-img"/>

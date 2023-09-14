@@ -1,5 +1,3 @@
-import {Mongoose, Schema} from "mongoose";
-
 export interface IArtistMutation {
     title: string;
     description: string;
@@ -47,18 +45,5 @@ export interface ITracksModifies {
     album: string
 }
 
-export interface IArtistInfo extends Mongoose.Document{
-    // _id: Types.ObjectId,
-    title: string,
-}
 
-export interface Test  extends Mongoose.Document{
-    title: string,
-    prototype?: ObjectId | undefined;
-    cacheHexString?: unknown;
-    generate?: {} | undefined;
-    createFromTime?: {} | undefined;
-    createFromHexString?: {} | undefined;
-    createFromBase64?: {} | undefined;
-    isValid?: {} | undefined;
-}
+

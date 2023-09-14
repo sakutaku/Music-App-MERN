@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchAlbum } from './albumsThunk';
 
 interface albumsState {
-  album: IAlbum[];
+  albums: IAlbum[];
   fetchLoading: boolean;
 }
 
 const initialState: albumsState = {
-  album: [],
+  albums: [],
   fetchLoading: false,
 };
 
@@ -22,7 +22,7 @@ const albumsSlice = createSlice({
     });
     builder.addCase(fetchAlbum.fulfilled, (state, action) => {
       state.fetchLoading = false;
-      state.album = action.payload;
+      state.albums = action.payload;
     });
     builder.addCase(fetchAlbum.rejected, (state) => {
       state.fetchLoading = false;

@@ -1,6 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const Tracks = () => {
+  const { id } = useParams() as {id: string};
+
+
   return (
     <div className="albums-container">
       <div className="main">
