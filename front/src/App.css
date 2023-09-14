@@ -141,3 +141,29 @@ body{
 .album-txt h5{
   font-size: 20px;
 }
+.track-item{
+  display: flex;
+  flex-direction: column;
+}
+.track-title{
+  font-size: 25px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+}
+.track-info{
+  display: flex;
+  align-items: center;
+}
+.track-play{
+  width: 35px;
+  height: 35px;
+}
+.line-one{
+  background: rgba(255, 255, 255, 0.3);
+  border-color: transparent;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.05);
+  height: 4px;
+  width: 95%;
+  border-radius: 4px;
+  margin: 0 auto;
+}
