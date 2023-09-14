@@ -9,7 +9,7 @@ const tracksReducer = express.Router();
 tracksReducer.get('/', async (req, res) => {
     try {
         if(req.query.album) {
-            const tracks = await Track.find({album: req.query.album});
+            const tracks = await Track.find({album: req.query.album}).sort({number: 1});
             const albumTitle = await Album.findById(req.query.album);
             const album = await Album.findById(req.query.album).populate('artist');
 

@@ -11,16 +11,8 @@ const Albums = () => {
   const { id } = useParams() as {id: string};
   const dispatch = useAppDispatch();
   const album = useSelector((state: RootState) => state.albums.albums);
-  const artists = useSelector((state: RootState) => state.artists.allArtists);
   const show = useSelector((state: RootState) => state.artists.fetchLoading);
-
-  let artist: string = '';
-
-  artists.forEach((art) => {
-    if(art._id === id) {
-      artist = art.title
-    }
-  });
+  const artist = useSelector((state: RootState) => state.albums.artist);
 
   useEffect(() => {
     dispatch(fetchAlbum(id));

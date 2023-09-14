@@ -19,7 +19,9 @@ const TrackItem: React.FC<Props> = ({track}) => {
           <img src={play} alt="play" className="track-play"/>
         </div>
         <div className="line-one"></div>
-        <div>{track.duration} minutes</div>
+        <div className="track-duration">
+          <i>{track.duration} minutes</i>
+        </div>
       </div>
     </div>
   );

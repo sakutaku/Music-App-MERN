@@ -30,15 +30,15 @@ const Tracks = () => {
 
 
   return (
-    <div className="albums-container">
+    <div className="tracks">
       <div className="main">
         <section className="main-img"></section>
         <h1 className="main-title">Offering the Best Music to Listeners Worldwide</h1>
       </div>
       <div className="container">
         <div>
-          <h2>{artist}</h2>
-          <h3>{album}</h3>
+          <h2 className="track-artist">{artist}</h2>
+          <h3 className="track-album">{album}</h3>
         </div>
         {items}
       </div>

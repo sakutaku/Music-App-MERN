@@ -18,6 +18,10 @@ export interface ITrack {
   duration: string
 }
 
+export interface IAlbumMutation{
+  albums: IAlbum[],
+  artist: string,
+}
 export interface ITrackMutation {
   allTracks: ITrack[],
   album: string,
