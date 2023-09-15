@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.9",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "^16.18.40",
     "@types/react": "^18.2.20",
