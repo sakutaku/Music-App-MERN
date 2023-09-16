@@ -46,5 +46,9 @@ export interface INewAlbums {
     tracks: number
 }
 
+export interface LoginMutation {
+    username: string;
+    password: string;
+}
 
 

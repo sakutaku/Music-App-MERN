@@ -3,11 +3,12 @@ import User from "../modeles/User";
 import {ITrackHistoryMutation} from "../type";
 import mongoose from "mongoose";
 import TrackHistory from "../modeles/TrackHistory";
+import auth from "../midlleware/auth";
 
 
 const tracksHistoryRouter = express.Router();
 
-tracksHistoryRouter.post('/', async (req, res, next) => {
+tracksHistoryRouter.post('/',  async (req, res, next) => {
     const token = req.get('Authorization');
     const user = await User.findOne({token: token});
 

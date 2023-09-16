@@ -22,6 +22,20 @@ body{
   left: 0;
   padding: 10px 70px 10px 30px;
 }
+.header-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.enter-link{
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+.enter-link:hover{
+  text-decoration: underline;
+}
 .logo{
   width: 65px;
   height: 65px;

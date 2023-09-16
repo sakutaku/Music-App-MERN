@@ -1,6 +1,6 @@
 import React from 'react';
-import Artists from './Artists';
 import RegisterForm from '../components/RegisterForm';
+import LoginForm from '../components/LoginForm';
 
 const Enter = () => {
   return (
@@ -12,6 +12,7 @@ const Enter = () => {
       <div className="container">
         <div className="enter-page">
           <RegisterForm/>
+          <LoginForm/>
         </div>
       </div>
     </>

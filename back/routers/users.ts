@@ -15,7 +15,12 @@ usersRouter.post('/', async (req, res, next) => {
 
         await user.save();
 
-        return res.send(user);
+        const answer = {
+            user,
+            message: 'You registered new user!',
+        };
+
+        return res.send(answer);
     } catch (e) {
         if(e instanceof mongoose.Error.ValidationError) {
             return res.status(400).send(e);
@@ -40,7 +45,13 @@ usersRouter.post('/sessions', async (req, res, next) =>{
 
         user.generateToken();
         await user.save();
-        res.send({message: 'Username and password correct!'});
+
+        const answer = {
+            user,
+            message: 'Username and password correct!',
+        };
+
+        res.send(answer);
     } catch (e) {
         if(e instanceof mongoose.Error.ValidationError) {
             return res.status(400).send(e);
