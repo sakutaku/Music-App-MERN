@@ -32,7 +32,7 @@ const LoginForm = () => {
       }));
       navigate('/artists');
     } catch (e) {
-      alert(e);
+      alert('Something is wrong!');
     }
   };
 
