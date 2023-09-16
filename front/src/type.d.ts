@@ -64,5 +64,7 @@ export interface GlobalError {
 }
 export interface ITrackHistoryData{
   token: string,
-  trackId: string
+  trackId: {
+    track: string
+  }
 }

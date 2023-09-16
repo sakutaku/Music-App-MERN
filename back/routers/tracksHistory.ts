@@ -8,6 +8,25 @@ import auth from "../midlleware/auth";
 
 const tracksHistoryRouter = express.Router();
 
+tracksHistoryRouter.get('/', async (req, res, next) => {
+    const token = req.get('Authorization');
+    const user = await User.findOne({token: token});
+
+    if(!token) {
+        return res.status(401).send({error: 'No token present!'});
+    }
+
+    if(!user) {
+        res.status(401).send('Unauthorized!');
+    } else {
+        const trackHistory = await TrackHistory.find({user: user._id}).sort({year: -1});
+
+        res.send(trackHistory);
+    }
+
+
+});
+
 tracksHistoryRouter.post('/',  async (req, res, next) => {
     const token = req.get('Authorization');
     const user = await User.findOne({token: token});
@@ -28,8 +47,6 @@ tracksHistoryRouter.post('/',  async (req, res, next) => {
 
         try {
             const trackHistory = new TrackHistory(trackHistoryData);
-
-            console.log(trackHistory)
             await trackHistory.save();
 
             return res.send({

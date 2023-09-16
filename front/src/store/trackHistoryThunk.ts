@@ -5,6 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const createTrackHistory = createAsyncThunk<void, ITrackHistoryData>(
   'trackHistory/create',
   async (data) => {
-    await axiosApi.post('/track_history', data.trackId, {headers: {Authorization: data.token}});
+    const request = await axiosApi.post('/track_history', data.trackId, {headers: {Authorization: data.token}});
+    return request.data;
   }
 );

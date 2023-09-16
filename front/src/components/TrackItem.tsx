@@ -4,6 +4,7 @@ import play from "../assets/images/play.png";
 import { useAppDispatch, useAppSelector } from '../app/hook';
 import { selectUser } from '../store/usersSlice';
 import { createTrackHistory } from '../store/trackHistoryThunk';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   track: ITrack
@@ -11,13 +12,17 @@ interface Props {
 const TrackItem: React.FC<Props> = ({track}) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
+  const navigate = useNavigate();
   const onPlayClick = async () => {
     if (!user) {
       alert('No user');
+      navigate('/');
     } else {
       const data = {
         token: user.token,
-        trackId: track._id
+        trackId: {
+          track: track._id
+        }
       }
       try {
         dispatch(createTrackHistory(data));

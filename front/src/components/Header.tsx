@@ -11,9 +11,13 @@ const Header = () => {
   return (
     <header className="header">
       {user !== null ?
+        <div className="header-inner">
           <Link to='/artists'>
             <img src={logo} alt="logo" className="logo"/>
           </Link>
+          <Link to={'/track_history'} className="enter-link">Tracks History</Link>
+        </div>
+
         :
         <div className="header-inner">
           <Link to='/'>
