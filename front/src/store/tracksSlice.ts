@@ -58,8 +58,6 @@ const tracksSlice = createSlice({
 
 export const tracksReducer = tracksSlice.reducer;
 export const {
-  addArtist,
-  addAlbum ,
   turnYoutube,
   turnOffYoutube,
   addLink} = tracksSlice.actions;

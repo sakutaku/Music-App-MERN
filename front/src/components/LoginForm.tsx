@@ -26,13 +26,14 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       await dispatch(fetchLogin(state)).unwrap();
+      navigate('/artists');
+    } catch (e) {
+      alert('Something is wrong!');
+    } finally {
       setState(() => ({
         username: '',
         password: ''
       }));
-      navigate('/artists');
-    } catch (e) {
-      alert('Something is wrong!');
     }
   };
 
@@ -41,10 +42,9 @@ const LoginForm = () => {
       <h2 className="form-title">Login</h2>
       <div className="input-wrap">
         <label htmlFor="username" className="form-label">Username</label>
-        {/*{*/}
-        {/*  Boolean(getFieldError()) &&*/}
-        {/*  <span className="error">{getFieldError()}</span>*/}
-        {/*}*/}
+        {
+          error ?   <span className="error">{error.error}</span> : null
+        }
         <input
           type="text"
           className={error ? 'form-control-error' : 'form-control'}
@@ -56,10 +56,9 @@ const LoginForm = () => {
       </div>
       <div className="input-wrap">
         <label htmlFor="password" className="form-label">Password</label>
-        {/*{*/}
-        {/*  Boolean(getFieldError()) &&*/}
-        {/*  <span className="error">{getFieldError()}</span>*/}
-        {/*}*/}
+        {
+          error ?   <span className="error">{error.error}</span> : null
+        }
         <input
           type="text"
           className={error ? 'form-control-error' : 'form-control'}

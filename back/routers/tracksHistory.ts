@@ -10,7 +10,7 @@ import Artist from "../modeles/Artist";
 
 const tracksHistoryRouter = express.Router();
 
-tracksHistoryRouter.get('/', async (req, res, next) => {
+tracksHistoryRouter.get('/', async (req, res) => {
     const token = req.get('Authorization');
     const user = await User.findOne({token: token});
 

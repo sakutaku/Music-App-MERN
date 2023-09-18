@@ -35,14 +35,15 @@ const RegisterForm = () => {
     try {
       await dispatch(fetchRegister(state)).unwrap();
       alert('Congrats, you are registered!');
+      dispatch(clearUser());
+      navigate('/');
+    } catch (e) {
+      alert('Something is wrong!');
+    } finally {
       setState(() => ({
         username: '',
         password: ''
       }));
-      dispatch(clearUser());
-      navigate('/');
-    } catch (e) {
-      alert(e);
     }
   };
 
