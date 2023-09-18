@@ -7,6 +7,8 @@ interface tracksState {
   fetchLoading: boolean;
   artist: string;
   album: string;
+  showYoutube: boolean,
+  link: string
 }
 
 const initialState: tracksState = {
@@ -14,6 +16,8 @@ const initialState: tracksState = {
   fetchLoading: false,
   artist: '',
   album: '',
+  showYoutube: false,
+  link: ''
 };
 
 const tracksSlice = createSlice({
@@ -26,6 +30,15 @@ const tracksSlice = createSlice({
     addAlbum: (state, action: PayloadAction<string>) => {
       state.album = action.payload;
     },
+    turnYoutube: (state) => {
+      state.showYoutube = true;
+    },
+    turnOffYoutube: (state) => {
+      state.showYoutube = false
+    },
+    addLink: (state, action: PayloadAction<string>) => {
+      state.link = action.payload
+    }
   },
   extraReducers: builder => {
     builder.addCase(fetchTrack.pending, (state) => {
@@ -44,4 +57,9 @@ const tracksSlice = createSlice({
 });
 
 export const tracksReducer = tracksSlice.reducer;
-export const { addArtist, addAlbum } = tracksSlice.actions;
+export const {
+  addArtist,
+  addAlbum ,
+  turnYoutube,
+  turnOffYoutube,
+  addLink} = tracksSlice.actions;

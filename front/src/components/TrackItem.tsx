@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../app/hook';
 import { selectUser } from '../store/usersSlice';
 import { createTrackHistory } from '../store/trackHistoryThunk';
 import { useNavigate } from 'react-router-dom';
+import {addLink, turnYoutube} from "../store/tracksSlice";
+
 
 interface Props {
   track: ITrack
@@ -26,6 +28,8 @@ const TrackItem: React.FC<Props> = ({track}) => {
       }
       try {
         dispatch(createTrackHistory(data));
+        dispatch(turnYoutube());
+        dispatch(addLink(track.link));
         alert('Track is added to the track history!');
       } catch (e) {
         alert('Something is wrong!');

@@ -15,7 +15,8 @@ export interface ITrackMutation {
     album: string;
     title: string;
     duration: string;
-    number: number
+    number: number;
+    link: string
 }
 
 export interface IArtistTracks {

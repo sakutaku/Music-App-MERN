@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner/Spinner';
 import TrackItem from '../components/TrackItem';
 import { useAppDispatch } from '../app/hook';
 import { fetchTrack } from '../store/tracksThunk';
+import YoutubeItem from "../components/YoutubeItem";
 
 const Tracks = () => {
   const { id } = useParams() as {id: string};
@@ -14,6 +15,8 @@ const Tracks = () => {
   const show = useSelector((state: RootState) => state.tracks.fetchLoading);
   const album = useSelector((state: RootState) => state.tracks.album);
   const artist = useSelector((state: RootState) => state.tracks.artist);
+  const youTubeModal = useSelector((state: RootState) => state.tracks.showYoutube);
+  const link = useSelector((state: RootState) => state.tracks.link);
 
 
   useEffect(() => {
@@ -28,7 +31,6 @@ const Tracks = () => {
     ));
   }
 
-
   return (
     <div className="tracks">
       <div className="main">
@@ -37,6 +39,9 @@ const Tracks = () => {
       </div>
       <div className="container">
         <div>
+          {
+            youTubeModal ? <YoutubeItem link={link}/> : null
+          }
           <h2 className="track-artist">{artist}</h2>
           <h3 className="track-album">{album}</h3>
         </div>

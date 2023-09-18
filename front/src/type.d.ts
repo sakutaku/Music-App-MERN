@@ -16,7 +16,8 @@ export interface ITrack {
   _id: string,
   number: number,
   title: string,
-  duration: string
+  duration: string,
+  link: string
 }
 
 export interface IAlbumMutation{
@@ -76,10 +77,5 @@ export interface ITrackHistory{
   datetime: string
 }
 
-export interface ITrackHistoryMutation {
-  _id: string,
-  user: string,
-  track: string,
-  datetime: string
-}
+
 
