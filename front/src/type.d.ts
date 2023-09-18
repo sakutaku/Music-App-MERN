@@ -26,7 +26,7 @@ export interface IAlbumMutation{
 export interface ITrackMutation {
   allTracks: ITrack[],
   album: string,
-  artist: string
+  artist: string,
 }
 export interface RegisterMutation {
   username: string;
@@ -64,7 +64,22 @@ export interface GlobalError {
 }
 export interface ITrackHistoryData{
   token: string,
-  trackId: {
+  info: {
     track: string
-  }
+  },
 }
+
+export interface ITrackHistory{
+  id: string,
+  track: string,
+  artist: string,
+  datetime: string
+}
+
+export interface ITrackHistoryMutation {
+  _id: string,
+  user: string,
+  track: string,
+  datetime: string
+}
+

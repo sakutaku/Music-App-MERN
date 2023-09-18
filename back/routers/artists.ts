@@ -15,6 +15,7 @@ artistsReducer.get('/', async (req, res) => {
     }
 });
 
+
 artistsReducer.post('/', imagesUpload.single('image'), async (req, res, next) => {
     const artistData: IArtistMutation = {
         title: req.body.title,

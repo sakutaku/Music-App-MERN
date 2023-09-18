@@ -3,6 +3,15 @@ import RegisterForm from '../components/RegisterForm';
 import LoginForm from '../components/LoginForm';
 
 const Enter = () => {
+  // const dispatch = useAppDispatch();
+  // const user = useSelector((state: RootState) => state.users.user);
+  //
+  // useEffect( () => {
+  //     if(user) {
+  //         dispatch(clearUser());
+  //     }
+  //     }, [dispatch, user]);
+
   return (
     <>
       <div className="enter">

@@ -13,7 +13,7 @@ const initialState: tracksState = {
   tracks: [],
   fetchLoading: false,
   artist: '',
-  album: ''
+  album: '',
 };
 
 const tracksSlice = createSlice({
@@ -35,7 +35,7 @@ const tracksSlice = createSlice({
       state.fetchLoading = false;
       state.tracks = action.payload.allTracks;
       state.album = action.payload.album;
-      state.artist = action.payload.artist
+      state.artist = action.payload.artist;
     });
     builder.addCase(fetchTrack.rejected, (state) => {
       state.fetchLoading = false;

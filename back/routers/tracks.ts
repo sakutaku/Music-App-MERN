@@ -60,6 +60,19 @@ tracksReducer.get('/', async (req, res) => {
     }
 });
 
+tracksReducer.get('/:id', async (req, res) => {
+    try {
+        const track = await Track.findById(req.params.id);
+
+        if(!track) {
+            return res.status(404).send('Not found!');
+        }
+
+        return res.send(track.title);
+    } catch {
+        return res.status(500).send('Error!');
+    }
+});
 tracksReducer.post('/', async (req, res, next) => {
     const trackData: ITrackMutation = {
         album: req.body.album,

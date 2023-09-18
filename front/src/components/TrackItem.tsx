@@ -20,8 +20,8 @@ const TrackItem: React.FC<Props> = ({track}) => {
     } else {
       const data = {
         token: user.token,
-        trackId: {
-          track: track._id
+        info: {
+          track: track._id,
         }
       }
       try {

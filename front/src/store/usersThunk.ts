@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RegisterMutation, RegisterResponse, User, ValidationError, LoginMutation, GlobalError } from '../type';
+import { RegisterMutation, RegisterResponse, ValidationError, GlobalError } from '../type';
 import { isAxiosError } from 'axios';
 import axiosApi from '../axiosApi';
 

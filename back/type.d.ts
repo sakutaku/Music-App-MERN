@@ -35,8 +35,15 @@ export interface ITrackHistoryMutation {
     user: string;
     track: string;
     datetime: string;
+    artist: string;
 }
 
+export interface ITrackHistoryNew {
+    id: string,
+    track: string,
+    datetime: string,
+    artist: string
+}
 export interface INewAlbums {
     _id: string,
     title: string,
@@ -44,11 +51,6 @@ export interface INewAlbums {
     year: number,
     image: string | undefined,
     tracks: number
-}
-
-export interface LoginMutation {
-    username: string;
-    password: string;
 }
 
 
