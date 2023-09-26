@@ -21,16 +21,18 @@ const run = async () => {
         console.log('Collections were not present, skipping drop...');
     }
 
-    const [user1, user2] = await User.create(
+    const [user1, admin] = await User.create(
         {
             username: 'user_1',
             password: '1qaz@WSX22',
             token: crypto.randomUUID(),
+            role: 'user'
         },
         {
-            username: 'user_2',
+            username: 'admin',
             password: '1qaz@WSX22',
             token: crypto.randomUUID(),
+            role: 'user'
         },
     );
 
@@ -112,11 +114,11 @@ const run = async () => {
         {user: user1, track: Again._id, datetime: '20-08-2022'},
         {user: user1, track: Why._id, datetime: '20-08-2022'},
         {user: user1, track: Dare._id, datetime: '26-07-2022'},
-        {user: user2, track: Care._id, datetime: '30-07-2022'},
-        {user: user2, track: Wolf._id, datetime: '01-07-2022'},
+        {user: admin, track: Care._id, datetime: '30-07-2022'},
+        {user: admin, track: Wolf._id, datetime: '01-07-2022'},
         {user: user1, track: Stuff._id, datetime: '20-08-2022'},
         {user: user1, track: Remember._id, datetime: '20-08-2022'},
-        {user: user2, track: Long._id, datetime: '01-07-2022'},
+        {user: admin, track: Long._id, datetime: '01-07-2022'},
         {user: user1, track: Empire._id, datetime: '20-08-2022'},
         {user: user1, track: Deep._id, datetime: '20-08-2022'},
     );
