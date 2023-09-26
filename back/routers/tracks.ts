@@ -4,16 +4,15 @@ import {IArtistTracks, ITrackMutation} from "../type";
 import Album from "../modeles/Album";
 import Track from "../modeles/Track";
 
-const tracksReducer = express.Router();
+const tracksRouter = express.Router();
 
-tracksReducer.get('/', async (req, res) => {
+tracksRouter.get('/', async (req, res) => {
     try {
         if(req.query.album) {
             const tracks = await Track.find({album: req.query.album}).sort({number: 1});
-            const albumTitle = await Album.findById(req.query.album);
             const album = await Album.findById(req.query.album).populate('artist');
 
-            if(!album || !albumTitle) {
+            if(!album) {
                 return res.status(401).send({error: 'No album present!'});
             }
 
@@ -25,7 +24,7 @@ tracksReducer.get('/', async (req, res) => {
 
             const tracksInfo = {
                 allTracks: tracks,
-                album: albumTitle.title,
+                album: album.title,
                 artist: name,
             };
 
@@ -60,7 +59,7 @@ tracksReducer.get('/', async (req, res) => {
     }
 });
 
-tracksReducer.get('/:id', async (req, res) => {
+tracksRouter.get('/:id', async (req, res) => {
     try {
         const track = await Track.findById(req.params.id);
 
@@ -73,7 +72,7 @@ tracksReducer.get('/:id', async (req, res) => {
         return res.status(500).send('Error!');
     }
 });
-tracksReducer.post('/', async (req, res, next) => {
+tracksRouter.post('/', async (req, res, next) => {
     const trackData: ITrackMutation = {
         album: req.body.album,
         title: req.body.title,
@@ -97,4 +96,4 @@ tracksReducer.post('/', async (req, res, next) => {
     }
 });
 
-export default tracksReducer;
+export default tracksRouter;

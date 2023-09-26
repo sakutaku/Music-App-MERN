@@ -1,11 +1,12 @@
 import React from 'react';
-import { ITrack } from '../type';
-import play from "../assets/images/play.png";
-import { useAppDispatch, useAppSelector } from '../app/hook';
-import { selectUser } from '../store/usersSlice';
-import { createTrackHistory } from '../store/trackHistoryThunk';
+import { ITrack } from '../../type';
+import play from "../../assets/images/play.png";
+import { useAppDispatch, useAppSelector } from '../../app/hook';
+import { selectUser } from '../../store/usersSlice';
+import { createTrackHistory } from '../../store/trackHistoryThunk';
 import { useNavigate } from 'react-router-dom';
-import {addLink, turnYoutube} from "../store/tracksSlice";
+import {addLink, turnYoutube} from "../../store/tracksSlice";
+import './TrackItem.css';
 
 
 interface Props {

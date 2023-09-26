@@ -1,6 +1,7 @@
 import React from 'react';
-import { ITrackHistory} from "../type";
+import { ITrackHistory} from "../../type";
 import dayjs from 'dayjs';
+import './TrackHistoryItem.css';
 
 interface Props {
     track: ITrackHistory

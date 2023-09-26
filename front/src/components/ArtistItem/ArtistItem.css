@@ -1,0 +1,44 @@
+.artist-item{
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  color: #828590;
+  background: #ffffff;
+  border-radius: 6px;
+  transition: .3s;
+  cursor: pointer;
+}
+.artist-item:hover{
+  transform: rotate(0deg) scale(1) translateY(10px);
+  transition: .5s all ease;
+  z-index: 400;
+}
+.artist-item-two{
+  text-align: center;
+  padding: 20px;
+}
+.artist-img{
+  width: 400px;
+  height: 400px;
+}
+.artist-title{
+  color: #fc0b68;
+  letter-spacing: 3px;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+.artist-span{
+  display: inline-block;
+  padding: 0 9px;
+  font-weight: 100;
+  color: #ffffff;
+  background-image: -webkit-linear-gradient(left, #f23637 0%, #fc0b68 100%);
+  background-image: linear-gradient(to right, #f23637 0%, #fc0b68 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF23637', endColorstr='#FFFC0B68', GradientType=1);
+  border-radius: 2px;
+}
+.artist-link{
+  text-decoration: none;
+}

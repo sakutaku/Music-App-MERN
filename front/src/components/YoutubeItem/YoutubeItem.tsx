@@ -1,7 +1,8 @@
 import React from 'react';
 import YouTube, {YouTubeProps} from "react-youtube";
-import {useAppDispatch} from "../app/hook";
-import {turnOffYoutube} from "../store/tracksSlice";
+import {useAppDispatch} from "../../app/hook";
+import {turnOffYoutube} from "../../store/tracksSlice";
+import './YoutubeItem.css';
 
 interface Props {
     link: string,

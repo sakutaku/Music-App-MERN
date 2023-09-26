@@ -1,0 +1,28 @@
+.track-item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.track-title{
+  font-size: 25px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+}
+.track-info{
+  display: flex;
+  align-items: center;
+}
+.track-play{
+  width: 35px;
+  height: 35px;
+}
+.track-duration{
+  font-weight: lighter;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.play-btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+}

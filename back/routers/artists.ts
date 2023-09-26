@@ -4,9 +4,9 @@ import {imagesUpload} from "../multer";
 import {IArtistMutation} from "../type";
 import mongoose from "mongoose";
 
-const artistsReducer = express.Router();
+const artistsRouter = express.Router();
 
-artistsReducer.get('/', async (req, res) => {
+artistsRouter.get('/', async (req, res) => {
     try {
         const artists = await Artist.find();
         return res.send(artists);
@@ -16,7 +16,7 @@ artistsReducer.get('/', async (req, res) => {
 });
 
 
-artistsReducer.post('/', imagesUpload.single('image'), async (req, res, next) => {
+artistsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
     const artistData: IArtistMutation = {
         title: req.body.title,
         description: req.body.description,
@@ -39,4 +39,4 @@ artistsReducer.post('/', imagesUpload.single('image'), async (req, res, next) =>
     }
 });
 
-export default artistsReducer;
+export default artistsRouter;

@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch } from '../app/hook';
+import { useAppDispatch } from '../../app/hook';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import Spinner from '../components/Spinner/Spinner';
-import {fetchTrackHistory} from '../store/trackHistoryThunk';
-import TrackHistoryItem from "../components/TrackHistoryItem";
+import { RootState } from '../../app/store';
+import Spinner from '../../components/Spinner/Spinner';
+import {fetchTrackHistory} from '../../store/trackHistoryThunk';
+import TrackHistoryItem from "../../components/TrackHistoryItem/TrackHistoryItem";
+import Layout from '../Layout/Layout';
 
 const TrackHistory = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,6 @@ const TrackHistory = () => {
     if(user) {
       dispatch(fetchTrackHistory(user.token));
     }
-    // navigate('/');
   }, [dispatch, user]);
 
   let items: React.ReactNode = <Spinner/>;
@@ -29,10 +29,7 @@ const TrackHistory = () => {
 
   return (
     <>
-      <div className="main">
-        <section className="main-img"></section>
-        <h1 className="main-title">Offering the Best Music to Listeners Worldwide</h1>
-      </div>
+      <Layout/>
       <div className="container">
         <div className="track-histiry">
           <h2 className="trackHistory-title">Track History:</h2>

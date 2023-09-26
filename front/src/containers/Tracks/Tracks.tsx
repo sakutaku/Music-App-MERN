@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import Spinner from '../components/Spinner/Spinner';
-import TrackItem from '../components/TrackItem';
-import { useAppDispatch } from '../app/hook';
-import { fetchTrack } from '../store/tracksThunk';
-import YoutubeItem from "../components/YoutubeItem";
+import { RootState } from '../../app/store';
+import Spinner from '../../components/Spinner/Spinner';
+import TrackItem from '../../components/TrackItem/TrackItem';
+import { useAppDispatch } from '../../app/hook';
+import { fetchTrack } from '../../store/tracksThunk';
+import YoutubeItem from "../../components/YoutubeItem/YoutubeItem";
+import Layout from '../Layout/Layout';
+import './Tracks.css';
 
 const Tracks = () => {
   const { id } = useParams() as {id: string};
@@ -32,11 +34,8 @@ const Tracks = () => {
   }
 
   return (
-    <div className="tracks">
-      <div className="main">
-        <section className="main-img"></section>
-        <h1 className="main-title">Offering the Best Music to Listeners Worldwide</h1>
-      </div>
+    <>
+      <Layout/>
       <div className="container">
         <div>
           {
@@ -47,7 +46,7 @@ const Tracks = () => {
         </div>
         {items}
       </div>
-    </div>
+    </>
   );
 };
 

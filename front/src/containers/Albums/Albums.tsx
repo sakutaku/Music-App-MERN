@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useAppDispatch } from '../app/hook';
-import { fetchAlbum } from '../store/albumsThunk';
+import { useAppDispatch } from '../../app/hook';
+import { fetchAlbum } from '../../store/albumsThunk';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import Spinner from '../components/Spinner/Spinner';
+import { RootState } from '../../app/store';
+import Spinner from '../../components/Spinner/Spinner';
+import Layout from '../Layout/Layout';
+import './Albums.css';
 
 
 const Albums = () => {
@@ -22,7 +24,7 @@ const Albums = () => {
 
   if(!show) {
     items = album.map((alb) => (
-      <Link to={`/tracks/${alb._id}`} className="album-link" key={alb._id}>
+      <Link to={`/tracks/${alb._id}`} className="album-link">
         <div className="album-wrap">
           <div>
             <img src={'http://localhost:8000/' + alb.image} alt={alb.image} className="album-img"/>
@@ -41,10 +43,7 @@ const Albums = () => {
 
   return (
     <div className="albums-container">
-      <div className="main">
-        <section className="main-img"></section>
-        <h1 className="main-title">Offering the Best Music to Listeners Worldwide</h1>
-      </div>
+      <Layout/>
       <div className="container">
         <div>
           <h2 className="artist-name">{artist}</h2>

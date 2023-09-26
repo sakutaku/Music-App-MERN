@@ -1,0 +1,19 @@
+.main{
+  position: relative;
+}
+.main-img{
+  padding: 120px 0;
+  background-image: url(https://livedemo00.template-help.com/wt_prod-20412/images/breadcrumbs-1920x440.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.main-title{
+  color: #fff;
+  position: absolute;
+  top: 40px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+  left: 40px;
+}

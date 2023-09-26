@@ -6,9 +6,9 @@ import mongoose from "mongoose";
 import Artist from "../modeles/Artist";
 import Track from "../modeles/Track";
 
-const albumsReducer = express.Router();
+const albumsRouter = express.Router();
 
-albumsReducer.get('/', async (req, res) => {
+albumsRouter.get('/', async (req, res) => {
     try {
         if(req.query.artist) {
             const albums = await Album.find({artist: req.query.artist}).sort({year: -1});
@@ -49,7 +49,7 @@ albumsReducer.get('/', async (req, res) => {
     }
 });
 
-albumsReducer.get('/:id', async (req, res) => {
+albumsRouter.get('/:id', async (req, res) => {
     try {
         const album = await Album.findById(req.params.id).populate('artist');
 
@@ -63,7 +63,7 @@ albumsReducer.get('/:id', async (req, res) => {
     }
 });
 
-albumsReducer.post('/', imagesUpload.single('image'), async (req, res, next) => {
+albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
     const albumData: IAlbumMutation = {
         artist: req.body.artist,
         title: req.body.title,
@@ -85,4 +85,4 @@ albumsReducer.post('/', imagesUpload.single('image'), async (req, res, next) => 
         next(e);
     }
 });
-export default albumsReducer;
+export default albumsRouter;

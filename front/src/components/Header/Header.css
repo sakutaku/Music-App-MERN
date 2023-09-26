@@ -1,0 +1,41 @@
+.header{
+  align-items: center;
+  background: #2d394b;
+  height: 80px;
+  left: 0;
+  padding: 10px 70px 10px 30px;
+}
+.header-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.enter-link{
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+.enter-link:hover{
+  text-decoration: underline;
+}
+.logo{
+  width: 65px;
+  height: 65px;
+}
+.user-hello{
+  margin-left: auto;
+  display: block;
+  color: #fff;
+}
+.logout-btn{
+  margin-left: 30px;
+  cursor: pointer;
+  border-radius: 20px;
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+.logout-btn:hover{
+  box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
+}

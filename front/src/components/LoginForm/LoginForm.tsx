@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { RegisterMutation } from '../type';
-import { useAppDispatch } from '../app/hook';
+import { LoginMutation} from '../../type';
+import { useAppDispatch } from '../../app/hook';
 import { useSelector } from 'react-redux';
-import { clearUser, selectRegisterError } from '../store/usersSlice';
+import { selectLoginError } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
-import { fetchRegister } from '../store/usersThunk';
+import { fetchLogin } from '../../store/usersThunk';
 
-const RegisterForm = () => {
-  const [state, setState] = useState<RegisterMutation>({
+const LoginForm = () => {
+  const [state, setState] = useState<LoginMutation>({
     username: '',
     password: ''
   });
   const dispatch = useAppDispatch();
-  const error = useSelector(selectRegisterError);
+  const error = useSelector(selectLoginError);
   const navigate = useNavigate();
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
@@ -22,21 +22,11 @@ const RegisterForm = () => {
     });
   };
 
-  const getFieldError = (fieldName: string) => {
-    try {
-      return error?.errors[fieldName].message;
-    } catch {
-      return undefined;
-    }
-  };
-
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await dispatch(fetchRegister(state)).unwrap();
-      alert('Congrats, you are registered!');
-      dispatch(clearUser());
-      navigate('/');
+      await dispatch(fetchLogin(state)).unwrap();
+      navigate('/artists');
     } catch (e) {
       alert('Something is wrong!');
     } finally {
@@ -49,16 +39,15 @@ const RegisterForm = () => {
 
   return (
     <form className="form" onSubmit={submitFormHandler}>
-      <h2 className="form-title">Registration</h2>
+      <h2 className="form-title">Login</h2>
       <div className="input-wrap">
         <label htmlFor="username" className="form-label">Username</label>
         {
-          Boolean(getFieldError('username')) &&
-          <span className="error">{getFieldError('username')}</span>
+          error ?   <span className="error">{error.error}</span> : null
         }
         <input
           type="text"
-          className={Boolean(getFieldError('username')) ? 'form-control-error' : 'form-control'}
+          className={error ? 'form-control-error' : 'form-control'}
           name="username"
           id="username"
           value={state.username}
@@ -68,21 +57,20 @@ const RegisterForm = () => {
       <div className="input-wrap">
         <label htmlFor="password" className="form-label">Password</label>
         {
-          Boolean(getFieldError('password')) &&
-          <span className="error">{getFieldError('password')}</span>
+          error ?   <span className="error">{error.error}</span> : null
         }
         <input
-          type="text"
-          className={Boolean(getFieldError('password')) ? 'form-control-error' : 'form-control'}
+          type="password"
+          className={error ? 'form-control-error' : 'form-control'}
           name="password"
           id="password"
           value={state.password}
           onChange={inputChangeHandler}
         />
       </div>
-      <button type="submit" className="form-btn">Sign up</button>
+      <button type="submit" className="form-btn">Log in</button>
     </form>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

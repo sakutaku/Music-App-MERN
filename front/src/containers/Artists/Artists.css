@@ -1,0 +1,5 @@
+.artists{
+  margin: 40px 0 70px;
+  display: flex;
+  justify-content: space-between;
+}

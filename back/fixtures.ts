@@ -120,6 +120,8 @@ const run = async () => {
         {user: user1, track: Empire._id, datetime: '20-08-2022'},
         {user: user1, track: Deep._id, datetime: '20-08-2022'},
     );
+
+    await db.close();
 };
 
 run().catch(console.error);

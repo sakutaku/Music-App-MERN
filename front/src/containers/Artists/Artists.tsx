@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useAppDispatch } from '../app/hook';
-import { fetchArtists } from '../store/artistsThunk';
+import { useAppDispatch } from '../../app/hook';
+import { fetchArtists } from '../../store/artistsThunk';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import ArtistItem from '../components/ArtistItem';
-import Spinner from '../components/Spinner/Spinner';
+import { RootState } from '../../app/store';
+import ArtistItem from '../../components/ArtistItem/ArtistItem';
+import Spinner from '../../components/Spinner/Spinner';
+import './Artists.css';
 
 const Artists = () => {
   const dispatch = useAppDispatch();

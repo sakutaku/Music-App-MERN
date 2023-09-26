@@ -25,7 +25,7 @@ export const usersSlice = createSlice({
   reducers: {
     clearUser: (state) => {
       state.user = null;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRegister.pending, (state) => {
