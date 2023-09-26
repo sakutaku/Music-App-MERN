@@ -39,3 +39,14 @@
 .logout-btn:hover{
   box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
 }
+.add-artist-link{
+  margin-left: 30px;
+  cursor: pointer;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+}

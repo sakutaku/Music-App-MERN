@@ -2,6 +2,7 @@ export interface IArtistMutation {
     title: string;
     description: string;
     image: string | null;
+    isPublished: boolean
 }
 
 export interface IAlbumMutation {

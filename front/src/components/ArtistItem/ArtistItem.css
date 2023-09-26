@@ -8,6 +8,7 @@
   border-radius: 6px;
   transition: .3s;
   cursor: pointer;
+  margin: 30px 20px 30px;
 }
 .artist-item:hover{
   transform: rotate(0deg) scale(1) translateY(10px);

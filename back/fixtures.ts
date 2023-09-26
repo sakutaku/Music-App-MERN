@@ -54,7 +54,7 @@ const run = async () => {
         {artist: Beyonce._id, title: 'Lemonade', year: 2016, image: 'fixtures/lemonade.png', isPublished: false},
         {artist: Shakira._id, title: 'SheWolf', year: 2009, image: 'fixtures/she_wolf.png', isPublished: false},
         {artist: Shakira._id, title: 'ShakiraAlbum', year: 2014, image: 'fixtures/shakira_album.png', isPublished: false},
-        {artist: Ciara._id, title: 'Goddies', year: 2004, image: 'fixtures/goddies.jpeg', isPublished: false},
+        {artist: Ciara._id, title: 'Goddies', year: 2004, image: 'fixtures/goodies.jpeg', isPublished: false},
         {artist: Ciara._id, title: 'Evolution', year: 2006, image: 'fixtures/evolution.jpeg', isPublished: false},
     );
 

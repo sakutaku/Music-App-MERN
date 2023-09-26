@@ -23,6 +23,7 @@ artistsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, nex
         title: req.body.title,
         description: req.body.description,
         image: req.file ? req.file.filename : null,
+        isPublished: false
     };
 
     try {
