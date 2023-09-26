@@ -60,4 +60,20 @@ artistsRouter.delete('/:id',auth, permit('admin'), async (req, res, next) => {
    }
 });
 
+artistsRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, res, next) => {
+   try {
+       const artistId = req.params.id;
+
+       const artist = await Artist.findById(artistId);
+
+       if (!artist) {
+           return res.status(404).json({ error: 'Artist not found' });
+       }
+
+       await Artist.findByIdAndUpdate(req.params.id, {isPublished: !artist.isPublished});
+   } catch (e) {
+       next(e);
+   }
+});
+
 export default artistsRouter;
