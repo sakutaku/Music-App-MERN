@@ -10,6 +10,7 @@ export interface IAlbumMutation {
     title: string;
     year: number;
     image: string | null;
+    isPublished: boolean;
 }
 
 export interface ITrackMutation {

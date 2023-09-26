@@ -56,3 +56,21 @@
   margin: 5px 0;
   font-size: 15px;
 }
+.album-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+  margin: 0 auto 30px;
+}
+.add-album-link{
+  margin-left: 30px;
+  cursor: pointer;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+}

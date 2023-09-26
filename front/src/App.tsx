@@ -7,6 +7,7 @@ import Tracks from './containers/Tracks/Tracks';
 import Enter from './containers/Enter/Enter';
 import TrackHistory from './containers/TrackHistory/TrackHistory';
 import AddArtist from './containers/AddArtist/AddArtist';
+import AddAlbum from './containers/AddAlbum/AddAlbum';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/tracks/:id" element={<Tracks/>}/>
         <Route path="/track_history" element={<TrackHistory/>}/>
         <Route path="/add-artist" element={<AddArtist/>}/>
+        <Route path="/albums-add" element={<AddAlbum/>}/>
       </Routes>
     </>
   );

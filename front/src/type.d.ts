@@ -23,11 +23,12 @@ export interface ITrack {
 export interface IAlbumMutation{
   albums: IAlbum[],
   artist: string,
+  id: string
 }
 export interface ITrackMutation {
   allTracks: ITrack[],
   album: string,
-  artist: string,
+  artist: string
 }
 export interface RegisterMutation {
   username: string;
@@ -80,6 +81,13 @@ export interface IArtistMutation{
   title: string,
   description: string,
   image: File | null
+}
+
+export interface IAlbumMutationPost {
+  artist: string,
+  title: string,
+  year: string,
+  image: File | null,
 }
 
 

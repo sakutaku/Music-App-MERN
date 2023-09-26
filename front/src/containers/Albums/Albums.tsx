@@ -45,8 +45,9 @@ const Albums = () => {
     <div className="albums-container">
       <Layout/>
       <div className="container">
-        <div>
+        <div className="album-header">
           <h2 className="artist-name">{artist}</h2>
+          <Link to="/albums-add" className="add-album-link">Add New Album</Link>
         </div>
         <div className="albums-list">
           {items}

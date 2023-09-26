@@ -39,6 +39,7 @@ albumsRouter.get('/', async (req, res) => {
             const albumsInfo = {
                 albums: newAlbums,
                 artist: artist.title,
+                id: artist._id
             };
 
             res.send(albumsInfo);
@@ -71,6 +72,7 @@ albumsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next
         title: req.body.title,
         year: Number(req.body.year),
         image: req.file ? req.file.filename : null,
+        isPublished: false
     };
 
     try {
