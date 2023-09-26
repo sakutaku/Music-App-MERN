@@ -22,6 +22,11 @@ const AlbumSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    isPublished: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
     image: String,
 });
 

@@ -22,6 +22,11 @@ const TrackSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    isPublished: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
     duration: String,
     link: String
 });

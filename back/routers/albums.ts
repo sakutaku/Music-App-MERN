@@ -5,6 +5,8 @@ import {IAlbumMutation, INewAlbums} from "../type";
 import mongoose from "mongoose";
 import Artist from "../modeles/Artist";
 import Track from "../modeles/Track";
+import auth, {IRequestWithUser} from "../midlleware/auth";
+import permit from "../midlleware/permit";
 
 const albumsRouter = express.Router();
 
@@ -63,7 +65,7 @@ albumsRouter.get('/:id', async (req, res) => {
     }
 });
 
-albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
+albumsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next) => {
     const albumData: IAlbumMutation = {
         artist: req.body.artist,
         title: req.body.title,
@@ -84,5 +86,24 @@ albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
         }
         next(e);
     }
+});
+
+albumsRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
+   try {
+       const albumId = req.params.id;
+
+       const album = await Album.findById(albumId);
+
+       if (!album) {
+           return res.status(404).json({ error: 'Album not found' });
+       }
+
+
+       await Album.deleteOne({ _id: album._id });
+
+       return res.send('Album deleted!');
+   } catch (e) {
+       return next(e);
+   }
 });
 export default albumsRouter;

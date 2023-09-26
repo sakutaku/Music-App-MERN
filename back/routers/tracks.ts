@@ -3,6 +3,9 @@ import express from "express";
 import {IArtistTracks, ITrackMutation} from "../type";
 import Album from "../modeles/Album";
 import Track from "../modeles/Track";
+import auth from "../midlleware/auth";
+import Artist from "../modeles/Artist";
+import permit from "../midlleware/permit";
 
 const tracksRouter = express.Router();
 
@@ -72,7 +75,7 @@ tracksRouter.get('/:id', async (req, res) => {
         return res.status(500).send('Error!');
     }
 });
-tracksRouter.post('/', async (req, res, next) => {
+tracksRouter.post('/', auth, async (req, res, next) => {
     const trackData: ITrackMutation = {
         album: req.body.album,
         title: req.body.title,
@@ -96,4 +99,21 @@ tracksRouter.post('/', async (req, res, next) => {
     }
 });
 
+tracksRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
+    try {
+        const trackId = req.params.id;
+
+        const track = await Artist.findById(trackId);
+
+        if (!track) {
+            return res.status(404).json({ error: 'Track not found' });
+        }
+
+        await Track.deleteOne({ _id: track._id });
+
+        return res.send('Track deleted!');
+    } catch (e) {
+        next(e);
+    }
+});
 export default tracksRouter;
