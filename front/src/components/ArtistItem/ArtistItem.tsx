@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { apiUrl, userRoles } from '../../constants';
 import { useAppDispatch } from '../../app/hook';
-import { deleteArtist, fetchArtists } from '../../store/artistsThunk';
+import { changeStatus, deleteArtist, fetchArtists } from '../../store/artistsThunk';
 import './ArtistItem.css';
 
 interface Props {
@@ -27,9 +27,18 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
       }
 
     } catch (e) {
-      alert('Something is wrong!')
+      alert('Something is wrong!');
     } finally {
       navigate('/');
+    }
+  };
+
+  const onChangeClick = (id: string) => {
+    try {
+      dispatch(changeStatus(id));
+      navigate('/');
+    } catch (e) {
+      alert('Something is wrong!');
     }
   };
 
@@ -42,7 +51,7 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
               ?
               <div className="artist-status-wrap">
                 <h3 className="artist-status">Unpublished</h3>
-                <button className="artist-status-btn" >Publish</button>
+                <button className="artist-status-btn" onClick={() => onChangeClick(artist._id)}>Publish</button>
               </div>
               :
               null
