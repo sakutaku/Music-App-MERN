@@ -17,7 +17,6 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
   const image = apiUrl + '/' + artist.image;
   const user = useSelector(selectUser);
 
-
   const onDeleteClick = (id: string) => {
     try {
       if(window.confirm('Do you want to delete this artist?')) {
@@ -73,6 +72,7 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
       </div>
     );
   }
+
 
   if(artist.isPublished) {
     return (

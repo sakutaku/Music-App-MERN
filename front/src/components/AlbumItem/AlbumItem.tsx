@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { apiUrl, userRoles } from '../../constants';
 import { useAppDispatch } from '../../app/hook';
-import { deleteAlbum } from '../../store/albumsThunk';
+import { changeStatusAlbum, deleteAlbum } from '../../store/albumsThunk';
 
 interface Props {
   album: IAlbum;
@@ -15,6 +15,7 @@ const AlbumItem: React.FC<Props> = ({album}) => {
   const user = useSelector(selectUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
 
   const onDeleteClick = (id: string) => {
     try {
@@ -30,6 +31,15 @@ const AlbumItem: React.FC<Props> = ({album}) => {
     }
   };
 
+  const onChangeClick = async (id: string) => {
+    try {
+      await dispatch(changeStatusAlbum(id));
+      navigate('/');
+    } catch (e) {
+      alert('Something is wrong!');
+    }
+  };
+
   if(user?.role === userRoles.admin) {
     return (
       <div className="album-container">
@@ -39,7 +49,7 @@ const AlbumItem: React.FC<Props> = ({album}) => {
               ?
               <div className="album-status">
                 Unpublished
-                <button className="album-status-btn">Publish</button>
+                <button className="album-status-btn" onClick={() => onChangeClick(album._id)}>Publish</button>
               </div>
               :
               null

@@ -27,7 +27,8 @@ albumsRouter.get('/', async (req, res) => {
                     artist: String(alb.artist),
                     year: alb.year,
                     image: alb.image,
-                    tracks: numberOfTracks
+                    tracks: numberOfTracks,
+                    isPublished: alb.isPublished
                 };
                 newAlbums.push(obj);
             }
@@ -124,5 +125,6 @@ albumsRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, re
    } catch (e) {
        next(e);
    }
+
 });
 export default albumsRouter;
