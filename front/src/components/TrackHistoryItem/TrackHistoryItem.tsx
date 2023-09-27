@@ -12,8 +12,8 @@ const TrackHistoryItem: React.FC<Props> = ({track}) => {
     return (
         <li>
             <time dateTime={date}>{date}</time>
-            <span className='trackHistory-artist'>{track.artist}</span>
-            <span>{track.track}</span>
+            <span className='trackHistory-artist'>{track.artist.title}</span>
+            <span>{track.track.title}</span>
         </li>
     );
 };

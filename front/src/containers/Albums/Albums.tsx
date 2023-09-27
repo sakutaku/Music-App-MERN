@@ -7,6 +7,7 @@ import { RootState } from '../../app/store';
 import Spinner from '../../components/Spinner/Spinner';
 import Layout from '../Layout/Layout';
 import './Albums.css';
+import { selectUser } from '../../store/usersSlice';
 
 
 const Albums = () => {
@@ -15,6 +16,7 @@ const Albums = () => {
   const album = useSelector((state: RootState) => state.albums.albums);
   const show = useSelector((state: RootState) => state.artists.fetchLoading);
   const artist = useSelector((state: RootState) => state.albums.artist);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchAlbum(id));
@@ -47,7 +49,7 @@ const Albums = () => {
       <div className="container">
         <div className="album-header">
           <h2 className="artist-name">{artist}</h2>
-          <Link to="/albums-add" className="add-album-link">Add New Album</Link>
+          {user ? <Link to="/albums-add" className="add-album-link">Add New Album</Link> : null}
         </div>
         <div className="albums-list">
           {items}

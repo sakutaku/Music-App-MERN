@@ -46,9 +46,13 @@ const TrackItem: React.FC<Props> = ({track}) => {
         </h3>
       </div>
       <div className="track-info">
-        <button className="play-btn" type="button" onClick={onPlayClick}>
-          <img src={play} alt="play" className="track-play"/>
-        </button>
+        {user ?
+          <button className="play-btn" type="button" onClick={onPlayClick}>
+            <img src={play} alt="play" className="track-play"/>
+          </button>
+              :
+          null
+        }
         <div className="line-one"></div>
         <div className="track-duration">
           <i>{track.duration} minutes</i>

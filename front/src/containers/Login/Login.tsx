@@ -1,16 +1,14 @@
 import React from 'react';
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import Layout from '../Layout/Layout';
-import './Enter.css';
+import './Login.css';
 
 const Enter = () => {
   return (
     <>
       <Layout/>
       <div className="container">
-        <div className="enter-page">
-          <RegisterForm/>
+        <div className="login-page">
           <LoginForm/>
         </div>
       </div>

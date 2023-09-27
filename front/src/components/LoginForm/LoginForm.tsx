@@ -26,7 +26,7 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       await dispatch(fetchLogin(state)).unwrap();
-      navigate('/artists');
+      navigate('/');
     } catch (e) {
       alert('Something is wrong!');
     } finally {

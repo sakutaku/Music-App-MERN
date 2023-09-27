@@ -73,8 +73,14 @@ export interface ITrackHistoryData{
 
 export interface ITrackHistory{
   id: string,
-  track: string,
-  artist: string,
+  track: {
+    _id: string,
+    title: string
+  },
+  artist: {
+    _id: string,
+    title: string
+  },
   datetime: string
 }
 export interface IArtistMutation{

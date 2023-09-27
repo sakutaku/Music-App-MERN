@@ -42,12 +42,6 @@ export interface ITrackHistoryMutation {
     artist: string;
 }
 
-export interface ITrackHistoryNew {
-    id: string,
-    track: string,
-    datetime: string,
-    artist: string
-}
 export interface INewAlbums {
     _id: string,
     title: string,

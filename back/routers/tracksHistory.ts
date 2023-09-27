@@ -1,50 +1,25 @@
 import express from "express";
 import User from "../modeles/User";
-import {ITrackHistoryMutation, ITrackHistoryNew} from "../type";
+import {ITrackHistoryMutation} from "../type";
 import mongoose from "mongoose";
 import TrackHistory from "../modeles/TrackHistory";
 import Track from "../modeles/Track";
 import Album from "../modeles/Album";
 import Artist from "../modeles/Artist";
+import auth, {IRequestWithUser} from "../midlleware/auth";
 
 
 const tracksHistoryRouter = express.Router();
 
-tracksHistoryRouter.get('/', async (req, res) => {
-    const token = req.get('Authorization');
-    const user = await User.findOne({token: token});
+tracksHistoryRouter.get('/', auth, async (req, res, next) => {
+    try {
+        const user = (req as IRequestWithUser).user;
 
-    if(!token) {
-        return res.status(401).send({error: 'No token present!'});
-    }
+        const trackHistory = await TrackHistory.find({user: user._id}).sort({datetime: -1}).populate('artist', 'title').populate('track', 'title');
+        res.send(trackHistory);
 
-    if(!user) {
-        res.status(401).send('Unauthorized!');
-    } else {
-        const trackHistory = await TrackHistory.find({user: user._id}).sort({datetime: -1});
-
-        const newArr: ITrackHistoryNew[] = [];
-
-        for (const track of trackHistory) {
-            const trackId = String(track.track);
-            const artistId = String(track.artist);
-
-            const trackName =  await Track.findById(trackId);
-            const artistName = await Artist.findById(artistId);
-
-            if(!trackName || !artistName) {
-                return res.status(401).send({error: 'No albumId present!'});
-            }
-            const obj: ITrackHistoryNew = {
-                id: track.id,
-                track: trackName.title,
-                datetime: track.datetime,
-                artist: artistName.title
-            };
-
-            newArr.push(obj);
-        }
-        res.send(newArr);
+    } catch (e) {
+        next(e);
     }
 });
 
