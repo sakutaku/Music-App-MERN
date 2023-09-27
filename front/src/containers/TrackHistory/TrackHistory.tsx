@@ -7,12 +7,14 @@ import {fetchTrackHistory} from '../../store/trackHistoryThunk';
 import TrackHistoryItem from "../../components/TrackHistoryItem/TrackHistoryItem";
 import Layout from '../Layout/Layout';
 import { useNavigate } from 'react-router-dom';
+import { selectUser } from '../../store/usersSlice';
+import { selectFetchLoading, selectItems } from '../../store/trackHistorySlice';
 
 const TrackHistory = () => {
   const dispatch = useAppDispatch();
-  const user = useSelector((state: RootState) => state.users.user);
-  const show = useSelector((state: RootState) => state.trackHistory.fetchLoading);
-  const tracks = useSelector((state: RootState) => state.trackHistory.items);
+  const user = useSelector(selectUser);
+  const show = useSelector((selectFetchLoading));
+  const tracks = useSelector(selectItems);
   const navigate = useNavigate();
 
   useEffect( () => {

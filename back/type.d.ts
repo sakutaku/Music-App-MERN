@@ -18,7 +18,8 @@ export interface ITrackMutation {
     title: string;
     duration: string;
     number: number;
-    link: string
+    link: string;
+    isPublished: boolean
 }
 
 export interface IArtistTracks {

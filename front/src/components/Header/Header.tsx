@@ -29,7 +29,6 @@ const Header = () => {
           <Link to={'/track_history'} className="enter-link">Tracks History</Link>
           <div className="user-hello">
             <span>Hello, {user.username}!</span>
-            <Link to="/artist-add" className="add-artist-link">Add artist</Link>
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
 

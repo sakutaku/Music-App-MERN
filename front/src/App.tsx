@@ -9,6 +9,7 @@ import AddArtist from './containers/AddArtist/AddArtist';
 import AddAlbum from './containers/AddAlbum/AddAlbum';
 import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
+import AddTrack from './containers/AddTrack/AddTrack';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/albums/:id" element={<Albums/>}/>
         <Route path="/tracks/:id" element={<Tracks/>}/>
+        <Route path="/tracks-add" element={<AddTrack/>}/>
         <Route path="/track_history" element={<TrackHistory/>}/>
         <Route path="/artist-add" element={<AddArtist/>}/>
         <Route path="/albums-add" element={<AddAlbum/>}/>

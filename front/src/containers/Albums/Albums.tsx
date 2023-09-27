@@ -3,19 +3,19 @@ import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hook';
 import { fetchAlbum } from '../../store/albumsThunk';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import Spinner from '../../components/Spinner/Spinner';
 import Layout from '../Layout/Layout';
 import './Albums.css';
 import { selectUser } from '../../store/usersSlice';
+import { selectAlbumArtist, selectAlbums, selectFetchLoading } from '../../store/albumsSlice';
 
 
 const Albums = () => {
   const { id } = useParams() as {id: string};
   const dispatch = useAppDispatch();
-  const album = useSelector((state: RootState) => state.albums.albums);
-  const show = useSelector((state: RootState) => state.artists.fetchLoading);
-  const artist = useSelector((state: RootState) => state.albums.artist);
+  const album = useSelector(selectAlbums);
+  const show = useSelector(selectFetchLoading);
+  const artist = useSelector(selectAlbumArtist);
   const user = useSelector(selectUser);
 
   useEffect(() => {

@@ -28,6 +28,7 @@ tracksRouter.get('/', async (req, res) => {
             const tracksInfo = {
                 allTracks: tracks,
                 album: album.title,
+                albumId: album._id,
                 artist: name,
             };
 
@@ -80,8 +81,9 @@ tracksRouter.post('/', auth, async (req, res, next) => {
         album: req.body.album,
         title: req.body.title,
         duration: req.body.duration,
-        number: req.body.number,
-        link: req.body.string
+        number: Number(req.body.number),
+        link: req.body.link,
+        isPublished: false
     };
 
     try {

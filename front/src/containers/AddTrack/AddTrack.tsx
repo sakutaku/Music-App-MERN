@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react';
 import Layout from '../Layout/Layout';
+import TrackForm from '../../components/TrackForm/TrackForm';
+import './AddTrack.css';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
-import './AddAlbum.css';
-import AlbumForm from '../../components/AlbumForm/AlbumForm';
-import { useNavigate } from 'react-router-dom';
 
-const AddAlbum = () => {
-  const user = useSelector(selectUser);
+const AddTrack = () => {
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     if(!user) {
       navigate('/');
     }
-  }, [user, navigate]);
+  }, [navigate, user]);
+
   return (
     <>
       <Layout/>
       <div className="container">
-        <div className="add-album-page">
-          <AlbumForm/>
+        <div className="add-track-page">
+          <TrackForm/>
         </div>
       </div>
     </>
   );
 };
 
-export default AddAlbum;
+export default AddTrack;

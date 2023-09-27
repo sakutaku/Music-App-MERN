@@ -4,10 +4,13 @@ import FileInput from '../FileInput/FileInput';
 import { useAppDispatch } from '../../app/hook';
 import { useNavigate } from 'react-router-dom';
 import { createAlbum } from '../../store/albumsThunk';
+import { useSelector } from 'react-redux';
+import { selectArtistId } from '../../store/albumsSlice';
 
 const AlbumForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const artistId = useSelector(selectArtistId);
   const [state, setState] = useState<IAlbumMutationPost>({
     artist: '',
     title: '',
@@ -42,8 +45,14 @@ const AlbumForm = () => {
       return;
     }
     try {
-      await dispatch(createAlbum(state)).unwrap();
-      navigate('/artists');
+      const data = {
+        artist: artistId,
+        title: state.title,
+        year: state.year,
+        image: state.image
+      }
+      await dispatch(createAlbum(data)).unwrap();
+      navigate('/');
     } catch (e) {
       alert('Something is wrong!');
     } finally {

@@ -1,6 +1,7 @@
 import { IArtist } from '../type';
 import { createSlice } from '@reduxjs/toolkit';
 import { createArtists, fetchArtists } from './artistsThunk';
+import { RootState } from '../app/store';
 
 interface artistsState {
   allArtists: IArtist[];
@@ -42,3 +43,6 @@ const artistsSlice = createSlice({
 });
 
 export const artistsReducer = artistsSlice.reducer;
+
+export const selectArtists = (state: RootState) => state.artists.allArtists;
+export const selectFetchLoading = (state: RootState) => state.artists.fetchLoading;

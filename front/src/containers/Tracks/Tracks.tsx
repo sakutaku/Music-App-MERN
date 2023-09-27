@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import Spinner from '../../components/Spinner/Spinner';
 import TrackItem from '../../components/TrackItem/TrackItem';
 import { useAppDispatch } from '../../app/hook';
@@ -9,16 +8,26 @@ import { fetchTrack } from '../../store/tracksThunk';
 import YoutubeItem from "../../components/YoutubeItem/YoutubeItem";
 import Layout from '../Layout/Layout';
 import './Tracks.css';
+import { selectUser } from '../../store/usersSlice';
+import {
+  selectAlbum,
+  selectArtist,
+  selectFetchLoading, selectLink,
+  selectShowYouTube,
+  selectTracks
+} from '../../store/tracksSlice';
 
 const Tracks = () => {
   const { id } = useParams() as {id: string};
   const dispatch = useAppDispatch()
-  const tracks = useSelector((state: RootState) => state.tracks.tracks);
-  const show = useSelector((state: RootState) => state.tracks.fetchLoading);
-  const album = useSelector((state: RootState) => state.tracks.album);
-  const artist = useSelector((state: RootState) => state.tracks.artist);
-  const youTubeModal = useSelector((state: RootState) => state.tracks.showYoutube);
-  const link = useSelector((state: RootState) => state.tracks.link);
+  const tracks = useSelector(selectTracks);
+
+  const show = useSelector(selectFetchLoading);
+  const album = useSelector(selectAlbum);
+  const artist = useSelector(selectArtist);
+  const youTubeModal = useSelector(selectShowYouTube);
+  const link = useSelector(selectLink);
+  const user = useSelector(selectUser);
 
 
   useEffect(() => {
@@ -42,7 +51,16 @@ const Tracks = () => {
             youTubeModal ? <YoutubeItem link={link}/> : null
           }
           <h2 className="track-artist">{artist}</h2>
-          <h3 className="track-album">{album}</h3>
+          {
+            user
+              ?
+              <div className="tracks-header">
+                <h3 className="track-album">{album}</h3>
+                <Link to="/tracks-add" className="track-link">Add track</Link>
+              </div>
+              :
+              <h3 className="track-album">{album}</h3>
+          }
         </div>
         {items}
       </div>
