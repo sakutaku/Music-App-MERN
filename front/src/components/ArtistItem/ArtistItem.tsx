@@ -1,17 +1,37 @@
 import React from 'react';
 import { IArtist } from '../../type';
-import { Link } from 'react-router-dom';
-import './ArtistItem.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { apiUrl, userRoles } from '../../constants';
+import { useAppDispatch } from '../../app/hook';
+import { deleteArtist, fetchArtists } from '../../store/artistsThunk';
+import './ArtistItem.css';
 
 interface Props {
   artist: IArtist
 }
 const ArtistItem: React.FC<Props> = ({artist}) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const image = apiUrl + '/' + artist.image;
   const user = useSelector(selectUser);
+
+
+  const onDeleteClick = (id: string) => {
+    try {
+      if(window.confirm('Do you want to delete this artist?')) {
+        dispatch(deleteArtist(id));
+        dispatch(fetchArtists());
+        navigate('/');
+      }
+
+    } catch (e) {
+      alert('Something is wrong!')
+    } finally {
+      navigate('/');
+    }
+  };
 
   if(user?.role === userRoles.admin) {
     return (
@@ -22,12 +42,12 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
               ?
               <div className="artist-status-wrap">
                 <h3 className="artist-status">Unpublished</h3>
-                <button className="artist-status-btn">Publish</button>
+                <button className="artist-status-btn" >Publish</button>
               </div>
               :
               null
           }
-          <button className="artist-delete">X</button>
+          <button className="artist-delete" onClick={() => onDeleteClick(artist._id)}>X</button>
         </div>
 
         <Link to={`/albums/${artist._id}`} className="artist-link">

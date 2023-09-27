@@ -80,6 +80,10 @@ export interface ITrackHistory{
   },
   datetime: string
 }
+
+export interface ITrackHistoryData {
+  track: string
+}
 export interface IArtistMutation{
   title: string,
   description: string,

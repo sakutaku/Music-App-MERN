@@ -26,8 +26,6 @@ tracksHistoryRouter.get('/', auth, async (req, res, next) => {
 tracksHistoryRouter.post('/', auth, async (req, res, next) => {
     const user = (req as IRequestWithUser).user;
 
-    console.log(user);
-
     const userId = user._id;
     const trackId = await Track.findById(req.body.track);
 

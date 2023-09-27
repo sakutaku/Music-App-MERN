@@ -42,7 +42,7 @@ const ArtistForm = () => {
     }
     try {
       await dispatch(createArtists(state)).unwrap();
-      navigate('/artists');
+      navigate('/');
     } catch (e) {
       alert('Something is wrong!');
     } finally {

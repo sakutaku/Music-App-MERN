@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import {addLink, turnYoutube} from "../../store/tracksSlice";
 import { userRoles } from '../../constants';
 import play from "../../assets/images/play.png";
-import './TrackItem.css';
 import { deleteTrack } from '../../store/tracksThunk';
+import './TrackItem.css';
 
 interface Props {
   track: ITrack
@@ -22,8 +22,11 @@ const TrackItem: React.FC<Props> = ({track}) => {
       alert('No user');
       navigate('/');
     } else {
+      const data = {
+        track: track._id
+      }
       try {
-        dispatch(createTrackHistory(track._id));
+        dispatch(createTrackHistory(data));
         dispatch(turnYoutube());
         dispatch(addLink(track.link));
         alert('Track is added to the track history!');
