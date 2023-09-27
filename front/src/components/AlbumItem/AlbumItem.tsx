@@ -1,20 +1,34 @@
 import React from 'react';
 import { IAlbum } from '../../type';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './AlbumItem.css';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { apiUrl, userRoles } from '../../constants';
+import { useAppDispatch } from '../../app/hook';
+import { deleteAlbum } from '../../store/albumsThunk';
 
 interface Props {
   album: IAlbum;
 }
 const AlbumItem: React.FC<Props> = ({album}) => {
   const user = useSelector(selectUser);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const onDelete = () => {
-    alert('h');
-  }
+  const onDeleteClick = (id: string) => {
+    try {
+      if(window.confirm('Do you want to delete this album?')) {
+        dispatch(deleteAlbum(id));
+        navigate('/');
+      }
+
+    } catch (e) {
+      alert('Something is wrong!')
+    } finally {
+      navigate('/');
+    }
+  };
 
   if(user?.role === userRoles.admin) {
     return (
@@ -30,7 +44,7 @@ const AlbumItem: React.FC<Props> = ({album}) => {
               :
               null
           }
-          <button className="album-delete" onClick={onDelete}>X</button>
+          <button className="album-delete" onClick={() => onDeleteClick(album._id)}>X</button>
         </div>
 
         <Link to={`/tracks/${album._id}`} className="album-link">

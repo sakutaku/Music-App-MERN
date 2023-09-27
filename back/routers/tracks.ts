@@ -4,7 +4,6 @@ import {IArtistTracks, ITrackMutation} from "../type";
 import Album from "../modeles/Album";
 import Track from "../modeles/Track";
 import auth from "../midlleware/auth";
-import Artist from "../modeles/Artist";
 import permit from "../midlleware/permit";
 
 const tracksRouter = express.Router();

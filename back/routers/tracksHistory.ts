@@ -1,5 +1,4 @@
 import express from "express";
-import User from "../modeles/User";
 import {ITrackHistoryMutation} from "../type";
 import mongoose from "mongoose";
 import TrackHistory from "../modeles/TrackHistory";
