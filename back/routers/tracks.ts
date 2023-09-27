@@ -28,7 +28,6 @@ tracksRouter.get('/', async (req, res) => {
             const tracksInfo = {
                 allTracks: tracks,
                 album: album.title,
-                albumId: album._id,
                 artist: name,
             };
 

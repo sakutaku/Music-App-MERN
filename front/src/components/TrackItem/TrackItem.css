@@ -26,3 +26,20 @@
   border: none;
   cursor: pointer;
 }
+.track-status-wrap{
+  text-align: right;
+  margin-bottom: 10px;
+}
+.track-status-btn{
+  background: transparent;
+  border: 1px solid #fff;
+  margin-left: 10px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition-duration: 0.3s ;
+}
+.track-status-btn:hover{
+  background: #fff;
+  color: #fc0b68;
+}

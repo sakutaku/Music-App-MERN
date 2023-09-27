@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ITrackMutation, ITrackMutationPost } from '../type';
 import axiosApi from '../axiosApi';
-import { RootState } from '../app/store';
 
 export const fetchTrack = createAsyncThunk<ITrackMutation, string>(
   'track/fetch',
@@ -11,13 +10,10 @@ export const fetchTrack = createAsyncThunk<ITrackMutation, string>(
   }
 );
 
-export const createTrack = createAsyncThunk<void, ITrackMutationPost, {state: RootState}>(
+export const createTrack = createAsyncThunk<void, ITrackMutationPost>(
   'track/create',
-  async (data, thunkAPI) => {
-    const usersState = thunkAPI.getState().users;
-    const token = usersState.user?.token;
-
-    const request = await axiosApi.post('/tracks', data, {headers: {Authorization: token}});
+  async (data) => {
+    const request = await axiosApi.post('/tracks', data);
     return request.data;
   }
 );

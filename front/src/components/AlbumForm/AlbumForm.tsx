@@ -5,12 +5,12 @@ import { useAppDispatch } from '../../app/hook';
 import { useNavigate } from 'react-router-dom';
 import { createAlbum } from '../../store/albumsThunk';
 import { useSelector } from 'react-redux';
-import { selectArtistId } from '../../store/albumsSlice';
+import { selectArtists } from '../../store/artistsSlice';
 
 const AlbumForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const artistId = useSelector(selectArtistId);
+  const artists = useSelector(selectArtists);
   const [state, setState] = useState<IAlbumMutationPost>({
     artist: '',
     title: '',
@@ -18,7 +18,7 @@ const AlbumForm = () => {
     image: null
   });
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = event.target;
 
     setState(prevState => {
@@ -45,13 +45,7 @@ const AlbumForm = () => {
       return;
     }
     try {
-      const data = {
-        artist: artistId,
-        title: state.title,
-        year: state.year,
-        image: state.image
-      }
-      await dispatch(createAlbum(data)).unwrap();
+      await dispatch(createAlbum(state)).unwrap();
       navigate('/');
     } catch (e) {
       alert('Something is wrong!');
@@ -89,6 +83,20 @@ const AlbumForm = () => {
           value={state.year}
           onChange={inputChangeHandler}
         />
+      </div>
+      <div className="input-wrap">
+        <label htmlFor="artist" className="form-label">Artist</label>
+        <select value={state.artist}
+                required
+                onChange={inputChangeHandler}
+                name="artist"
+                id="artist"
+                className="form-control">
+          <option value="" disabled defaultValue="">Select artist</option>
+          {artists.map((item, index) => (
+            <option value={item._id} key={index}>{item.title}</option>
+          ))}
+        </select>
       </div>
       <>
         <FileInput onChange={filesInputChangeHandler} name="image" label="Image:"/>

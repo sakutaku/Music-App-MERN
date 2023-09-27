@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../app/hook';
 import { useNavigate } from 'react-router-dom';
-import { ITrackMutationPost } from '../../type';
+import { IAllAlbums, ITrackMutationPost, ITrackMutationPostTwo } from '../../type';
 import { createTrack } from '../../store/tracksThunk';
 import { useSelector } from 'react-redux';
-import { selectAlbumId } from '../../store/tracksSlice';
+import { selectArtists } from '../../store/artistsSlice';
+import { fetchArtists } from '../../store/artistsThunk';
 
-const TrackForm = () => {
+interface Props {
+  albums: IAllAlbums[]
+}
+const TrackForm: React.FC<Props>= ({albums}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const albumId = useSelector(selectAlbumId);
-  const [state, setState] = useState<ITrackMutationPost>({
+  const artists = useSelector(selectArtists);
+  const [state, setState] = useState<ITrackMutationPostTwo>({
     album: '',
+    artist: '',
     title: '',
     duration: '',
     number: '',
     link: ''
   });
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect( () => {
+    dispatch(fetchArtists());
+  }, [dispatch]);
+
+  const arr: IAllAlbums[] = [];
+
+  albums.filter((alb) => {
+    if(alb.artist === state.artist) {
+      arr.push(alb);
+    }
+  })
+
+  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = event.target;
 
     setState(prevState => {
@@ -34,19 +51,21 @@ const TrackForm = () => {
       return;
     }
     try {
-      const data = {
-        album: albumId,
+      const data: ITrackMutationPost = {
+        album: state.album,
         title: state.title,
         duration: state.duration,
         number: state.number,
         link: state.link
       };
+
       await dispatch(createTrack(data)).unwrap();
       navigate('/');
     } catch (e) {
       alert('Something is wrong!');
     } finally {
         setState(() => ({
+          artist: '',
           album: '',
           title: '',
           duration: '',
@@ -104,6 +123,34 @@ const TrackForm = () => {
           value={state.link}
           onChange={inputChangeHandler}
         />
+      </div>
+      <div className="input-wrap">
+        <label htmlFor="artist" className="form-label">Artist</label>
+        <select value={state.artist}
+                required
+                onChange={inputChangeHandler}
+                name="artist"
+                id="artist"
+                className="form-control">
+          <option value="" disabled defaultValue="">Select artist</option>
+          {artists.map((item, index) => (
+            <option value={item._id} key={index}>{item.title}</option>
+          ))}
+        </select>
+      </div>
+      <div className="input-wrap">
+        <label htmlFor="album" className="form-label">Album</label>
+        <select value={state.album}
+                required
+                onChange={inputChangeHandler}
+                name="album"
+                id="album"
+                className="form-control">
+          <option value="" disabled defaultValue="">Select album</option>
+          {arr.map((item, index) => (
+            <option value={item._id} key={index}>{item.title}</option>
+          ))}
+        </select>
       </div>
 
       <button type="submit" className="form-btn">Add</button>

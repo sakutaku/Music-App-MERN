@@ -7,6 +7,7 @@ import { createTrackHistory } from '../../store/trackHistoryThunk';
 import { useNavigate } from 'react-router-dom';
 import {addLink, turnYoutube} from "../../store/tracksSlice";
 import './TrackItem.css';
+import { userRoles } from '../../constants';
 
 
 interface Props {
@@ -38,28 +39,67 @@ const TrackItem: React.FC<Props> = ({track}) => {
     }
   };
 
-  return (
-    <div className="track-item">
-      <div>
-        <h3 className="track-title">
-          {track.title} № {track.number}
-        </h3>
-      </div>
-      <div className="track-info">
-        {user ?
-          <button className="play-btn" type="button" onClick={onPlayClick}>
-            <img src={play} alt="play" className="track-play"/>
-          </button>
+  if(user?.role === userRoles.admin) {
+    return (
+      <div className="track-item">
+        <div>
+          <h3 className="track-title">
+            {track.title} № {track.number}
+          </h3>
+          {
+            !track.isPublished
+              ?
+              <div className="track-status-wrap">
+                Unpublished
+                <button className="track-status-btn">Publish</button>
+              </div>
               :
-          null
-        }
-        <div className="line-one"></div>
-        <div className="track-duration">
-          <i>{track.duration} minutes</i>
+              null
+          }
+        </div>
+        <div className="track-info">
+          {user ?
+            <button className="play-btn" type="button" onClick={onPlayClick}>
+              <img src={play} alt="play" className="track-play"/>
+            </button>
+            :
+            null
+          }
+          <div className="line-one"></div>
+          <div className="track-duration">
+            <i>{track.duration} minutes</i>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if(track.isPublished) {
+    return (
+      <div className="track-item">
+        <div>
+          <h3 className="track-title">
+            {track.title} № {track.number}
+          </h3>
+        </div>
+        <div className="track-info">
+          {user ?
+            <button className="play-btn" type="button" onClick={onPlayClick}>
+              <img src={play} alt="play" className="track-play"/>
+            </button>
+            :
+            null
+          }
+          <div className="line-one"></div>
+          <div className="track-duration">
+            <i>{track.duration} minutes</i>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default TrackItem;

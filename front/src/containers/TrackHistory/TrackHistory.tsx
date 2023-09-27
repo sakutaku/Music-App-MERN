@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../app/hook';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import Spinner from '../../components/Spinner/Spinner';
 import {fetchTrackHistory} from '../../store/trackHistoryThunk';
 import TrackHistoryItem from "../../components/TrackHistoryItem/TrackHistoryItem";
@@ -19,7 +18,7 @@ const TrackHistory = () => {
 
   useEffect( () => {
     if(user) {
-      dispatch(fetchTrackHistory(user.token));
+      dispatch(fetchTrackHistory());
     } else {
       navigate('/');
     }
@@ -29,7 +28,7 @@ const TrackHistory = () => {
 
   if(!show) {
     items = tracks.map((track) => (
-     <TrackHistoryItem track={track} key={track.id}/>
+     <TrackHistoryItem track={track} key={track.datetime}/>
     ));
   }
 

@@ -8,6 +8,7 @@ import Layout from '../Layout/Layout';
 import './Albums.css';
 import { selectUser } from '../../store/usersSlice';
 import { selectAlbumArtist, selectAlbums, selectFetchLoading } from '../../store/albumsSlice';
+import AlbumItem from '../../components/AlbumItem/AlbumItem';
 
 
 const Albums = () => {
@@ -26,25 +27,12 @@ const Albums = () => {
 
   if(!show) {
     items = album.map((alb) => (
-      <Link to={`/tracks/${alb._id}`} className="album-link">
-        <div className="album-wrap">
-          <div>
-            <img src={'http://localhost:8000/' + alb.image} alt={alb.image} className="album-img"/>
-          </div>
-          <div className="album-txt">
-            <h3>{alb.title}</h3>
-            <h5 className="tracks-year">Year: {alb.year}</h5>
-            <h5 className="tracks-total">
-              <i>Total tracks: {alb.tracks}</i>
-            </h5>
-          </div>
-        </div>
-      </Link>
+      <AlbumItem album={alb} key={alb._id}/>
     ));
   }
 
   return (
-    <div className="albums-container">
+    <>
       <Layout/>
       <div className="container">
         <div className="album-header">
@@ -55,7 +43,7 @@ const Albums = () => {
           {items}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
