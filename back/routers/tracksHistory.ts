@@ -23,56 +23,49 @@ tracksHistoryRouter.get('/', auth, async (req, res, next) => {
     }
 });
 
-tracksHistoryRouter.post('/',  async (req, res, next) => {
-    const token = req.get('Authorization');
-    const user = await User.findOne({token: token});
+tracksHistoryRouter.post('/', auth, async (req, res, next) => {
+    const user = (req as IRequestWithUser).user;
 
-    if(!token) {
-        return res.status(401).send({error: 'No token present!'});
+    console.log(user);
+
+    const userId = user._id;
+    const trackId = await Track.findById(req.body.track);
+
+    if(!trackId) {
+        return res.status(401).send({error: 'No trackId present!'});
+    }
+    const albumId = await Album.findById(String(trackId.album));
+
+    if(!albumId) {
+        return res.status(401).send({error: 'No albumId present!'});
     }
 
-    if(!user) {
-        res.status(401).send('Unauthorized!');
-    } else {
-        const userId = user._id;
-        const trackId = await Track.findById(req.body.track);
+    const artistID = await Artist.findById(String(albumId.artist));
 
-        if(!trackId) {
-            return res.status(401).send({error: 'No trackId present!'});
+    if(!artistID) {
+        return res.status(401).send({error: 'No albumId present!'});
+    }
+
+    const trackHistoryData: ITrackHistoryMutation = {
+        user: userId.toString(),
+        track: req.body.track,
+        datetime: new Date().toISOString(),
+        artist: artistID.id,
+    };
+
+    try {
+        const trackHistory = new TrackHistory(trackHistoryData);
+        await trackHistory.save();
+
+        return res.send({
+            trackHistory
+        });
+    } catch (e) {
+        if(e instanceof mongoose.Error.ValidationError) {
+            return res.status(400).send(e);
         }
-        const albumId = await Album.findById(String(trackId.album));
 
-        if(!albumId) {
-            return res.status(401).send({error: 'No albumId present!'});
-        }
-
-        const artistID = await Artist.findById(String(albumId.artist));
-
-        if(!artistID) {
-            return res.status(401).send({error: 'No albumId present!'});
-        }
-
-        const trackHistoryData: ITrackHistoryMutation = {
-            user: userId.toString(),
-            track: req.body.track,
-            datetime: new Date().toISOString(),
-            artist: artistID.id,
-        };
-
-        try {
-            const trackHistory = new TrackHistory(trackHistoryData);
-            await trackHistory.save();
-
-            return res.send({
-                trackHistory
-            });
-        } catch (e) {
-            if(e instanceof mongoose.Error.ValidationError) {
-                return res.status(400).send(e);
-            }
-
-            next(e);
-        }
+        next(e);
     }
 });
 

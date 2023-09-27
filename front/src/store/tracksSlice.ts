@@ -1,6 +1,6 @@
 import { ITrack } from '../type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createTrack, fetchTrack } from './tracksThunk';
+import { createTrack, deleteTrack, fetchTrack } from './tracksThunk';
 import { RootState } from '../app/store';
 
 interface tracksState {
@@ -10,7 +10,8 @@ interface tracksState {
   album: string;
   showYoutube: boolean,
   link: string,
-  createLoading: boolean
+  createLoading: boolean,
+  deleteLoading: boolean
 }
 
 const initialState: tracksState = {
@@ -20,7 +21,8 @@ const initialState: tracksState = {
   album: '',
   showYoutube: false,
   link: '',
-  createLoading: false
+  createLoading: false,
+  deleteLoading: false
 };
 
 const tracksSlice = createSlice({
@@ -64,6 +66,15 @@ const tracksSlice = createSlice({
     });
     builder.addCase(createTrack.rejected, (state) => {
       state.createLoading = false;
+    });
+    builder.addCase(deleteTrack.pending, (state) => {
+      state.deleteLoading = true;
+    });
+    builder.addCase(deleteTrack.fulfilled, (state) => {
+      state.deleteLoading = false;
+    });
+    builder.addCase(deleteTrack.rejected, (state) => {
+      state.deleteLoading = false;
     });
   }
 });

@@ -15,6 +15,12 @@
   transition: .5s all ease;
   z-index: 400;
 }
+.artist-header{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .artist-item-two{
   text-align: center;
   padding: 20px;
@@ -43,12 +49,9 @@
 .artist-link{
   text-decoration: none;
 }
-.artist-status-wrap{
-  text-align: center;
-}
+
 .artist-status{
   margin: 0;
-  text-decoration: underline;
   color: #828590;
   font-weight: lighter;
 }
@@ -62,6 +65,17 @@
   transition-duration: 0.3s;
 }
 .artist-status-btn:hover{
+  background: #fc0b68;
+  color: #fff;
+}
+.artist-delete{
+  background: transparent;
+  border: 1px solid #fc0b68;
+  cursor: pointer;
+  color: #fc0b68;
+  transition-duration: 0.3s;
+}
+.artist-delete:hover{
   background: #fc0b68;
   color: #fff;
 }

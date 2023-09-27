@@ -20,7 +20,7 @@ export const fetchAlbum = createAsyncThunk<IAlbumMutation, string>(
 
 export const createAlbum = createAsyncThunk<void, IAlbumMutationPost>(
   'album/create',
-  async (data, thunkAPI) => {
+  async (data) => {
     const formData = new FormData();
     const keys = Object.keys(data) as (keyof IAlbumMutationPost)[];
 

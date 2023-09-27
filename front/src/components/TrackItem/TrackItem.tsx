@@ -1,14 +1,14 @@
 import React from 'react';
 import { ITrack } from '../../type';
-import play from "../../assets/images/play.png";
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { selectUser } from '../../store/usersSlice';
 import { createTrackHistory } from '../../store/trackHistoryThunk';
 import { useNavigate } from 'react-router-dom';
 import {addLink, turnYoutube} from "../../store/tracksSlice";
-import './TrackItem.css';
 import { userRoles } from '../../constants';
-
+import play from "../../assets/images/play.png";
+import './TrackItem.css';
+import { deleteTrack } from '../../store/tracksThunk';
 
 interface Props {
   track: ITrack
@@ -22,14 +22,8 @@ const TrackItem: React.FC<Props> = ({track}) => {
       alert('No user');
       navigate('/');
     } else {
-      const data = {
-        token: user.token,
-        info: {
-          track: track._id,
-        }
-      }
       try {
-        dispatch(createTrackHistory(data));
+        dispatch(createTrackHistory(track._id));
         dispatch(turnYoutube());
         dispatch(addLink(track.link));
         alert('Track is added to the track history!');
@@ -39,12 +33,26 @@ const TrackItem: React.FC<Props> = ({track}) => {
     }
   };
 
+  const onDeleteClick = (id: string) => {
+    try {
+      if(window.confirm('Do you want to delete this track?')) {
+        dispatch(deleteTrack(id));
+        navigate('/');
+      }
+    } catch (e) {
+      alert('Something is wrong!')
+    }
+  };
+
   if(user?.role === userRoles.admin) {
     return (
       <div className="track-item">
         <div>
           <h3 className="track-title">
             {track.title} № {track.number}
+            <span className="track-delete-wrap">
+              <button className="track-delete" onClick={() => onDeleteClick(track._id)}></button>
+            </span>
           </h3>
           {
             !track.isPublished

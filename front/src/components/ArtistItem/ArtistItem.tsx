@@ -15,15 +15,8 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
 
   if(user?.role === userRoles.admin) {
     return (
-      <Link to={`/albums/${artist._id}`} className="artist-link">
-        <div className="artist-item">
-          <div>
-            <img src={image} alt={artist.title} className="artist-img"/>
-          </div>
-          <div className="artist-item-two">
-            <span className="artist-span">Best Artist</span>
-            <h2 className="artist-title">{artist.title}</h2>
-          </div>
+      <div className="artist-item">
+        <div className="artist-header">
           {
             !artist.isPublished
               ?
@@ -34,8 +27,21 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
               :
               null
           }
+          <button className="artist-delete">X</button>
         </div>
-      </Link>
+
+        <Link to={`/albums/${artist._id}`} className="artist-link">
+          <div>
+            <div>
+              <img src={image} alt={artist.title} className="artist-img"/>
+            </div>
+            <div className="artist-item-two">
+              <span className="artist-span">Best Artist</span>
+              <h2 className="artist-title">{artist.title}</h2>
+            </div>
+          </div>
+        </Link>
+      </div>
     );
   }
 

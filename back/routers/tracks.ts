@@ -104,10 +104,10 @@ tracksRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
     try {
         const trackId = req.params.id;
 
-        const track = await Artist.findById(trackId);
+        const track = await Track.findById(trackId);
 
         if (!track) {
-            return res.status(404).json({ error: 'Track not found' });
+            return res.status(404).json({ error: 'Track not found'});
         }
 
         await Track.deleteOne({ _id: track._id });

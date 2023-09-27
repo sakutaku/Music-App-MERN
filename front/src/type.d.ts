@@ -68,13 +68,6 @@ export interface LoginMutation {
 export interface GlobalError {
   error: string;
 }
-export interface ITrackHistoryData{
-  token: string,
-  info: {
-    track: string
-  },
-}
-
 export interface ITrackHistory{
   id: string,
   track: {
