@@ -24,21 +24,30 @@
 }
 .user-hello{
   margin-left: auto;
-  display: block;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .logout-btn{
   margin-left: 30px;
   cursor: pointer;
-  border-radius: 20px;
-  background: #fff;
+  background-color: transparent;
+  background-image: url("../../assets/images/logout.svg");
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-size: 20px;
   border: none;
-  padding: 10px 20px;
-  text-transform: uppercase;
-}
-.logout-btn:hover{
-  box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.75);
+  background-position: center;
 }
 .login-link{
   margin-right: 20px;
+}
+.form-control-header{
+  margin: 0 0 0 8px;
+  padding: 8px 5px;
+}
+
+.form-control-header:focus{
+  outline: none;
 }

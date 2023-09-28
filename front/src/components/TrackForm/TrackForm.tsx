@@ -6,6 +6,7 @@ import { createTrack } from '../../store/tracksThunk';
 import { useSelector } from 'react-redux';
 import { selectArtists } from '../../store/artistsSlice';
 import { fetchArtists } from '../../store/artistsThunk';
+import { selectUser } from '../../store/usersSlice';
 
 interface Props {
   albums: IAllAlbums[]
@@ -14,13 +15,15 @@ const TrackForm: React.FC<Props>= ({albums}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const artists = useSelector(selectArtists);
+  const user = useSelector(selectUser);
   const [state, setState] = useState<ITrackMutationPostTwo>({
     album: '',
     artist: '',
     title: '',
     duration: '',
     number: '',
-    link: ''
+    link: '',
+    user: ''
   });
 
   useEffect( () => {
@@ -51,16 +54,19 @@ const TrackForm: React.FC<Props>= ({albums}) => {
       return;
     }
     try {
-      const data: ITrackMutationPost = {
-        album: state.album,
-        title: state.title,
-        duration: state.duration,
-        number: state.number,
-        link: state.link
-      };
+      if(user) {
+        const data: ITrackMutationPost = {
+          album: state.album,
+          title: state.title,
+          duration: state.duration,
+          number: state.number,
+          link: state.link,
+          user: user?._id
+        };
 
-      await dispatch(createTrack(data)).unwrap();
-      navigate('/');
+        await dispatch(createTrack(data)).unwrap();
+        navigate('/');
+      }
     } catch (e) {
       alert('Something is wrong!');
     } finally {
@@ -70,7 +76,8 @@ const TrackForm: React.FC<Props>= ({albums}) => {
           title: '',
           duration: '',
           number: '',
-          link: ''
+          link: '',
+          user: ''
         }));
     }
   };

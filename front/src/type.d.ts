@@ -2,7 +2,8 @@ export interface IArtist{
   _id: string,
   title: string,
   image: string,
-  isPublished: boolean
+  isPublished: boolean,
+  user: string
 }
 
 export interface IAlbum{
@@ -11,7 +12,8 @@ export interface IAlbum{
   title: string,
   year: string,
   tracks: number,
-  isPublished: boolean
+  isPublished: boolean,
+  user: string
 }
 
 export interface ITrack {
@@ -20,7 +22,8 @@ export interface ITrack {
   title: string,
   duration: string,
   link: string,
-  isPublished: boolean
+  isPublished: boolean,
+  user: string
 }
 
 export interface IAlbumMutation{
@@ -87,7 +90,8 @@ export interface ITrackHistoryData {
 export interface IArtistMutation{
   title: string,
   description: string,
-  image: File | null
+  image: File | null,
+  user: string
 }
 
 export interface IAlbumMutationPost {
@@ -95,12 +99,14 @@ export interface IAlbumMutationPost {
   title: string,
   year: string,
   image: File | null,
+  user: string
 }
 
 export interface IAllAlbums {
   _id: string,
   artist: string,
   title: string,
+  user: string
 }
 
 export interface ITrackMutationPost {
@@ -109,6 +115,7 @@ export interface ITrackMutationPost {
   duration: string,
   number: string,
   link: string
+  user: string
 }
 
 export interface ITrackMutationPostTwo {
@@ -117,6 +124,7 @@ export interface ITrackMutationPostTwo {
   title: string,
   duration: string,
   number: string,
-  link: string
+  link: string,
+  user: string
 }
 

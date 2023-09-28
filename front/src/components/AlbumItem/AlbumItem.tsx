@@ -16,7 +16,6 @@ const AlbumItem: React.FC<Props> = ({album}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-
   const onDeleteClick = (id: string) => {
     try {
       if(window.confirm('Do you want to delete this album?')) {
@@ -56,7 +55,35 @@ const AlbumItem: React.FC<Props> = ({album}) => {
           }
           <button className="album-delete" onClick={() => onDeleteClick(album._id)}>X</button>
         </div>
+        <Link to={`/tracks/${album._id}`} className="album-link">
+          <div className="album-wrap">
+            <div>
+              <img src={apiUrl + '/' + album.image} alt={album.title} className="album-img"/>
+            </div>
+            <div className="album-txt">
+              <h3>
+                {album.title}
+              </h3>
+              <h5 className="tracks-year">Year: {album.year}</h5>
+              <h5 className="tracks-total">
+                <i>Total tracks: {album.tracks}</i>
+              </h5>
+            </div>
+          </div>
+        </Link>
+      </div>
 
+    );
+  }
+
+  if(!album.isPublished && album.user === user?._id) {
+    return (
+      <div className="album-container">
+        <div className="album-delete-wrap">
+              <div className="album-status">
+                Unpublished
+              </div>
+        </div>
         <Link to={`/tracks/${album._id}`} className="album-link">
           <div className="album-wrap">
             <div>
@@ -80,24 +107,28 @@ const AlbumItem: React.FC<Props> = ({album}) => {
 
   if(album.isPublished) {
     return (
-      <Link to={`/tracks/${album._id}`} className="album-link">
-        <div className="album-wrap">
-          <div>
-            <img src={'http://localhost:8000/' + album.image} alt={album.title} className="album-img"/>
+      <div className="album-container">
+        <Link to={`/tracks/${album._id}`} className="album-link">
+          <div className="album-wrap">
+            <div>
+              <img src={'http://localhost:8000/' + album.image} alt={album.title} className="album-img"/>
+            </div>
+            <div className="album-txt">
+              <h3>{album.title}</h3>
+              <h5 className="tracks-year">Year: {album.year}</h5>
+              <h5 className="tracks-total">
+                <i>Total tracks: {album.tracks}</i>
+              </h5>
+            </div>
           </div>
-          <div className="album-txt">
-            <h3>{album.title}</h3>
-            <h5 className="tracks-year">Year: {album.year}</h5>
-            <h5 className="tracks-total">
-              <i>Total tracks: {album.tracks}</i>
-            </h5>
-          </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
+
     );
-  } else {
+  }  else {
     return null
   }
+
 };
 
 export default AlbumItem;

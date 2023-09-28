@@ -17,18 +17,17 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
   const image = apiUrl + '/' + artist.image;
   const user = useSelector(selectUser);
 
-  const onDeleteClick = (id: string) => {
+  const onDeleteClick = async (id: string) => {
     try {
       if(window.confirm('Do you want to delete this artist?')) {
-        dispatch(deleteArtist(id));
-        dispatch(fetchArtists());
-        navigate('/');
+        await dispatch(deleteArtist(id));
+        await dispatch(fetchArtists());
       }
 
     } catch (e) {
       alert('Something is wrong!');
     } finally {
-      navigate('/');
+
     }
   };
 
@@ -88,7 +87,28 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
         </div>
       </Link>
     );
-  } else {
+  } else if(!artist.isPublished && artist.user === user?._id) {
+    return (
+      <div className="artist-item">
+        <div className="artist-header">
+              <div className="artist-status-wrap">
+                <h3 className="artist-status">Unpublished</h3>
+              </div>
+        </div>
+        <Link to={`/albums/${artist._id}`} className="artist-link">
+          <div>
+            <div>
+              <img src={image} alt={artist.title} className="artist-img"/>
+            </div>
+            <div className="artist-item-two">
+              <span className="artist-span">Best Artist</span>
+              <h2 className="artist-title">{artist.title}</h2>
+            </div>
+          </div>
+        </Link>
+      </div>
+    );
+  }else {
     return null;
   }
 

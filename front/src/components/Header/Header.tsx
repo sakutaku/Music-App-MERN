@@ -19,6 +19,7 @@ const Header = () => {
     }
   };
 
+
   return (
     <header className="header">
       {user !== null ?
@@ -29,7 +30,13 @@ const Header = () => {
           <Link to={'/track_history'} className="enter-link">Tracks History</Link>
           <div className="user-hello">
             <span>Hello, {user.username}!</span>
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+            <div>
+              <Link to="/tracks-add" className="track-link">Add track</Link>
+            </div>
+            <div>
+              <button className="logout-btn" onClick={handleLogout}></button>
+            </div>
+
           </div>
 
         </div>

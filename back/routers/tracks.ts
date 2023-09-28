@@ -5,6 +5,7 @@ import Album from "../modeles/Album";
 import Track from "../modeles/Track";
 import auth from "../midlleware/auth";
 import permit from "../midlleware/permit";
+import TrackHistory from "../modeles/TrackHistory";
 
 const tracksRouter = express.Router();
 
@@ -76,6 +77,7 @@ tracksRouter.get('/:id', async (req, res) => {
 });
 tracksRouter.post('/', auth, async (req, res, next) => {
     const trackData: ITrackMutation = {
+        user: req.body.user,
         album: req.body.album,
         title: req.body.title,
         duration: req.body.duration,
@@ -110,6 +112,7 @@ tracksRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
         }
 
         await Track.deleteOne({ _id: track._id });
+        await TrackHistory.deleteOne({track: track._id});
 
         return res.send('Track deleted!');
     } catch (e) {

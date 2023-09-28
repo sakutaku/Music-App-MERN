@@ -7,6 +7,7 @@ import Artist from "../modeles/Artist";
 import Track from "../modeles/Track";
 import auth, {IRequestWithUser} from "../midlleware/auth";
 import permit from "../midlleware/permit";
+import TrackHistory from "../modeles/TrackHistory";
 
 const albumsRouter = express.Router();
 
@@ -28,7 +29,8 @@ albumsRouter.get('/', async (req, res) => {
                     year: alb.year,
                     image: alb.image,
                     tracks: numberOfTracks,
-                    isPublished: alb.isPublished
+                    isPublished: alb.isPublished,
+                    user: alb.user
                 };
                 newAlbums.push(obj);
             }
@@ -69,6 +71,7 @@ albumsRouter.get('/:id', async (req, res) => {
 
 albumsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, next) => {
     const albumData: IAlbumMutation = {
+        user: req.body.user,
         artist: req.body.artist,
         title: req.body.title,
         year: Number(req.body.year),
@@ -102,6 +105,12 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res, next) => {
        }
 
 
+       const allTracks = await Track.find({album: album._id});
+
+       for (const track of allTracks) {
+           await Track.deleteOne({_id: track._id});
+           await TrackHistory.deleteOne({track: track._id});
+       }
        await Album.deleteOne({ _id: album._id });
 
        return res.send('Album deleted!');

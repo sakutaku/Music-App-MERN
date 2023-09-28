@@ -10,9 +10,9 @@ li {
   font-family: sans-serif;
   position: relative;
   padding: 20px;
-  border: 20px solid #0000;
+  border: 20px solid rgba(123, 14, 14, 0);
   background: linear-gradient(#e71e07 0 0) content-box,
-  linear-gradient(var(--c, #fc0b68) 0 0) padding-box,
+  linear-gradient(var(--c, #ffffff) 0 0) padding-box,
   linear-gradient(var(--d, 90deg), #0000 75%, #2d394b 0) border-box;
 }
 li:nth-child(even) {
@@ -56,7 +56,7 @@ time:before {
 li:nth-child(even) time:before {
   right: auto;
   left: calc(100% + 5px);
-  background: repeating-linear-gradient(90deg, #fc0b68 0 5px, #0000 0 10px) 50%/100%
+  background: repeating-linear-gradient(90deg, #ffffff 0 5px, #0000 0 10px) 50%/100%
   2px no-repeat;
 }
 .trackHistory-artist{

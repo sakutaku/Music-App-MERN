@@ -4,15 +4,19 @@ import FileInput from '../FileInput/FileInput';
 import { useAppDispatch } from '../../app/hook';
 import { useNavigate } from 'react-router-dom';
 import { createArtists } from '../../store/artistsThunk';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../store/usersSlice';
 
 const ArtistForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [state, setState] = useState<IArtistMutation>({
+    user: '',
     title: '',
     description: '',
     image: null
   });
+  const user = useSelector(selectUser);
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = event.target;
@@ -41,12 +45,21 @@ const ArtistForm = () => {
       return;
     }
     try {
-      await dispatch(createArtists(state)).unwrap();
-      navigate('/');
+      if(user) {
+        const data = {
+          user: user._id,
+          title: state.title,
+          description: state.description,
+          image: state.image
+        }
+        await dispatch(createArtists(data)).unwrap();
+        navigate('/');
+      }
     } catch (e) {
       alert('Something is wrong!');
     } finally {
       setState(() => ({
+        user: '',
         title: '',
         description: '',
         image: null

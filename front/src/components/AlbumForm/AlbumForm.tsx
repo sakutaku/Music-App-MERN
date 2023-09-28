@@ -6,17 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import { createAlbum } from '../../store/albumsThunk';
 import { useSelector } from 'react-redux';
 import { selectArtists } from '../../store/artistsSlice';
+import { selectUser } from '../../store/usersSlice';
 
 const AlbumForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const artists = useSelector(selectArtists);
   const [state, setState] = useState<IAlbumMutationPost>({
+    user: '',
     artist: '',
     title: '',
     year: '',
     image: null
   });
+  const user = useSelector(selectUser);
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {name, value} = event.target;
@@ -45,12 +48,23 @@ const AlbumForm = () => {
       return;
     }
     try {
-      await dispatch(createAlbum(state)).unwrap();
-      navigate('/');
+      if(user) {
+        const data = {
+          user: user._id,
+          artist: state.artist,
+          title: state.title,
+          year: state.year,
+          image: state.image
+        }
+        await dispatch(createAlbum(data)).unwrap();
+        navigate('/');
+      }
+
     } catch (e) {
       alert('Something is wrong!');
     } finally {
       setState(() => ({
+        user: '',
         artist: '',
         title: '',
         year: '',

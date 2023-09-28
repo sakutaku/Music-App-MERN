@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Album from "./Album";
+import User from "./User";
 
 const TrackSchema = new mongoose.Schema({
     album: {
@@ -11,6 +12,17 @@ const TrackSchema = new mongoose.Schema({
                 await Album.findById(value);
             },
             message: 'Album does not exist!',
+        }
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        validate: {
+            validator: async (value: mongoose.Types.ObjectId) => {
+                await User.findById(value);
+            },
+            message: 'User does not exist!',
         }
     },
     title: {

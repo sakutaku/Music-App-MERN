@@ -94,6 +94,37 @@ const TrackItem: React.FC<Props> = ({track}) => {
     );
   }
 
+  if(!track.isPublished && user?._id === track.user) {
+    return (
+      <div className="track-item">
+        <div>
+          <h3 className="track-title">
+            {track.title} № {track.number}
+            <span className="track-delete-wrap">
+              <button className="track-delete" onClick={() => onDeleteClick(track._id)}></button>
+            </span>
+          </h3>
+              <div className="track-status-wrap">
+                Unpublished
+              </div>
+        </div>
+        <div className="track-info">
+          {user ?
+            <button className="play-btn" type="button" onClick={onPlayClick}>
+              <img src={play} alt="play" className="track-play"/>
+            </button>
+            :
+            null
+          }
+          <div className="line-one"></div>
+          <div className="track-duration">
+            <i>{track.duration} minutes</i>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if(track.isPublished) {
     return (
       <div className="track-item">
