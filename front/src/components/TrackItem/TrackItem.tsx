@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {addLink, turnYoutube} from "../../store/tracksSlice";
 import { userRoles } from '../../constants';
 import play from "../../assets/images/play.png";
-import { deleteTrack } from '../../store/tracksThunk';
+import { changeStatusTrack, deleteTrack } from '../../store/tracksThunk';
 import './TrackItem.css';
 
 interface Props {
@@ -47,6 +47,15 @@ const TrackItem: React.FC<Props> = ({track}) => {
     }
   };
 
+  const onChangeClick = (id: string) => {
+    try {
+      dispatch(changeStatusTrack(id));
+      navigate('/');
+    } catch (e) {
+      alert('Something is wrong!');
+    }
+  };
+
   if(user?.role === userRoles.admin) {
     return (
       <div className="track-item">
@@ -62,7 +71,7 @@ const TrackItem: React.FC<Props> = ({track}) => {
               ?
               <div className="track-status-wrap">
                 Unpublished
-                <button className="track-status-btn">Publish</button>
+                <button className="track-status-btn" onClick={() => onChangeClick(track._id)}>Publish</button>
               </div>
               :
               null

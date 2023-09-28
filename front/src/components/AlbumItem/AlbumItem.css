@@ -12,9 +12,7 @@
   transition: .3s;
   cursor: pointer;
 }
-.album-container:hover{
-  background: linear-gradient(to right, #f23637, #fc0b68);
-}
+
 .album-wrap{
   display: flex;
   align-items: center;
