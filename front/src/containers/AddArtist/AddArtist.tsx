@@ -10,19 +10,18 @@ const AddArtist = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       navigate('/');
     }
   }, [user, navigate]);
 
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
         <div className="add-artist-page">
-          <ArtistForm/>
+          <ArtistForm />
         </div>
       </div>
     </>

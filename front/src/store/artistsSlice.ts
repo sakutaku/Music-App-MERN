@@ -16,14 +16,14 @@ const initialState: artistsState = {
   fetchLoading: false,
   createLoading: false,
   deleteLoading: false,
-  changeLoading: false
+  changeLoading: false,
 };
 
 const artistsSlice = createSlice({
   name: 'artists',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchArtists.pending, (state) => {
       state.fetchLoading = true;
     });
@@ -61,7 +61,7 @@ const artistsSlice = createSlice({
     builder.addCase(changeStatus.rejected, (state) => {
       state.changeLoading = false;
     });
-  }
+  },
 });
 
 export const artistsReducer = artistsSlice.reducer;

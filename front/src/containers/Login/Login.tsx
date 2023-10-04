@@ -6,10 +6,10 @@ import './Login.css';
 const Enter = () => {
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
         <div className="login-page">
-          <LoginForm/>
+          <LoginForm />
         </div>
       </div>
     </>

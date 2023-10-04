@@ -11,16 +11,16 @@ const AddAlbum = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       navigate('/');
     }
   }, [user, navigate]);
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
         <div className="add-album-page">
-          <AlbumForm/>
+          <AlbumForm />
         </div>
       </div>
     </>

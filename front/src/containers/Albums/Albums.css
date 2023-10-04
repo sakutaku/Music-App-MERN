@@ -1,22 +1,24 @@
-.artist-name{
+.artist-name {
   text-align: center;
   letter-spacing: 6px;
   text-transform: uppercase;
   color: #fff;
 }
-.albums-list{
+
+.albums-list {
   display: flex;
   flex-direction: column;
 }
 
-.album-header{
+.album-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 400px;
   margin: 0 auto 30px;
 }
-.add-album-link{
+
+.add-album-link {
   margin-left: 30px;
   cursor: pointer;
   border-radius: 20px;

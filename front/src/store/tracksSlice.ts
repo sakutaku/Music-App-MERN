@@ -8,11 +8,11 @@ interface tracksState {
   fetchLoading: boolean;
   artist: string;
   album: string;
-  showYoutube: boolean,
-  link: string,
-  createLoading: boolean,
-  deleteLoading: boolean,
-  changeLoading: boolean
+  showYoutube: boolean;
+  link: string;
+  createLoading: boolean;
+  deleteLoading: boolean;
+  changeLoading: boolean;
 }
 
 const initialState: tracksState = {
@@ -24,7 +24,7 @@ const initialState: tracksState = {
   link: '',
   createLoading: false,
   deleteLoading: false,
-  changeLoading: false
+  changeLoading: false,
 };
 
 const tracksSlice = createSlice({
@@ -41,13 +41,13 @@ const tracksSlice = createSlice({
       state.showYoutube = true;
     },
     turnOffYoutube: (state) => {
-      state.showYoutube = false
+      state.showYoutube = false;
     },
     addLink: (state, action: PayloadAction<string>) => {
-      state.link = action.payload
-    }
+      state.link = action.payload;
+    },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchTrack.pending, (state) => {
       state.fetchLoading = true;
     });
@@ -87,7 +87,7 @@ const tracksSlice = createSlice({
     builder.addCase(changeStatusTrack.rejected, (state) => {
       state.changeLoading = false;
     });
-  }
+  },
 });
 
 export const tracksReducer = tracksSlice.reducer;
@@ -97,7 +97,4 @@ export const selectAlbum = (state: RootState) => state.tracks.album;
 export const selectArtist = (state: RootState) => state.tracks.artist;
 export const selectShowYouTube = (state: RootState) => state.tracks.showYoutube;
 export const selectLink = (state: RootState) => state.tracks.link;
-export const {
-  turnYoutube,
-  turnOffYoutube,
-  addLink} = tracksSlice.actions;
+export const { turnYoutube, turnOffYoutube, addLink } = tracksSlice.actions;

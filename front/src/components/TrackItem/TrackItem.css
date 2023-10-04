@@ -1,59 +1,69 @@
-.track-item{
+.track-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-.track-title{
+
+.track-title {
   font-size: 25px;
   font-weight: lighter;
   letter-spacing: 5px;
   display: flex;
   align-items: center;
 }
-.track-info{
+
+.track-info {
   display: flex;
   align-items: center;
 }
-.track-play{
+
+.track-play {
   width: 35px;
   height: 35px;
 }
-.track-duration{
+
+.track-duration {
   font-weight: lighter;
   letter-spacing: 2px;
   text-align: center;
 }
-.play-btn{
+
+.play-btn {
   background: none;
   border: none;
   cursor: pointer;
 }
-.track-status-wrap{
+
+.track-status-wrap {
   text-align: right;
   margin-bottom: 10px;
 }
-.track-status-btn{
+
+.track-status-btn {
   background: transparent;
   border: 1px solid #fff;
   margin-left: 10px;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  transition-duration: 0.3s ;
+  transition-duration: 0.3s;
 }
-.track-status-btn:hover{
+
+.track-status-btn:hover {
   background: #fff;
   color: #fc0b68;
 }
-.track-delete-wrap{
+
+.track-delete-wrap {
   margin-left: auto;
 }
-.track-delete{
+
+.track-delete {
   margin-right: 10px;
   color: #fff;
   border: none;
   cursor: pointer;
-  background-image: url("../../assets/images/remove.svg");
+  background-image: url('../../assets/images/remove.svg');
   background-color: transparent;
   background-size: 25px;
   background-repeat: no-repeat;

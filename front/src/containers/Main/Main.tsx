@@ -5,9 +5,9 @@ import Layout from '../Layout/Layout';
 const Main = () => {
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
-        <Artists/>
+        <Artists />
       </div>
     </>
   );

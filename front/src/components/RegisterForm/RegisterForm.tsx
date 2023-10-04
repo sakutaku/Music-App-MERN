@@ -9,16 +9,16 @@ import { fetchRegister } from '../../store/usersThunk';
 const RegisterForm = () => {
   const [state, setState] = useState<RegisterMutation>({
     username: '',
-    password: ''
+    password: '',
   });
   const dispatch = useAppDispatch();
   const error = useSelector(selectRegisterError);
   const navigate = useNavigate();
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
 
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -42,7 +42,7 @@ const RegisterForm = () => {
     } finally {
       setState(() => ({
         username: '',
-        password: ''
+        password: '',
       }));
     }
   };
@@ -51,14 +51,15 @@ const RegisterForm = () => {
     <form className="form" onSubmit={submitFormHandler}>
       <h2 className="form-title">Registration</h2>
       <div className="input-wrap">
-        <label htmlFor="username" className="form-label">Username</label>
-        {
-          Boolean(getFieldError('username')) &&
+        <label htmlFor="username" className="form-label">
+          Username
+        </label>
+        {Boolean(getFieldError('username')) && (
           <span className="error">{getFieldError('username')}</span>
-        }
+        )}
         <input
           type="text"
-          className={Boolean(getFieldError('username')) ? 'form-control-error' : 'form-control'}
+          className={getFieldError('username') ? 'form-control-error' : 'form-control'}
           name="username"
           id="username"
           value={state.username}
@@ -66,21 +67,24 @@ const RegisterForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="password" className="form-label">Password</label>
-        {
-          Boolean(getFieldError('password')) &&
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
+        {Boolean(getFieldError('password')) && (
           <span className="error">{getFieldError('password')}</span>
-        }
+        )}
         <input
           type="text"
-          className={Boolean(getFieldError('password')) ? 'form-control-error' : 'form-control'}
+          className={getFieldError('password') ? 'form-control-error' : 'form-control'}
           name="password"
           id="password"
           value={state.password}
           onChange={inputChangeHandler}
         />
       </div>
-      <button type="submit" className="form-btn">Sign up</button>
+      <button type="submit" className="form-btn">
+        Sign up
+      </button>
     </form>
   );
 };

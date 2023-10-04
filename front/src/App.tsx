@@ -14,20 +14,20 @@ import AddTrack from './containers/AddTrack/AddTrack';
 const App = () => {
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
-        <Route path="/" element={<Main/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/albums/:id" element={<Albums/>}/>
-        <Route path="/tracks/:id" element={<Tracks/>}/>
-        <Route path="/tracks-add" element={<AddTrack/>}/>
-        <Route path="/track_history" element={<TrackHistory/>}/>
-        <Route path="/artist-add" element={<AddArtist/>}/>
-        <Route path="/albums-add" element={<AddAlbum/>}/>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/albums/:id" element={<Albums />} />
+        <Route path="/tracks/:id" element={<Tracks />} />
+        <Route path="/tracks-add" element={<AddTrack />} />
+        <Route path="/track_history" element={<TrackHistory />} />
+        <Route path="/artist-add" element={<AddArtist />} />
+        <Route path="/albums-add" element={<AddAlbum />} />
       </Routes>
     </>
   );
-}
+};
 
 export default App;

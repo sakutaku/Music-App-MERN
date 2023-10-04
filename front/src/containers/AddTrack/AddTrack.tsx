@@ -16,19 +16,18 @@ const AddTrack = () => {
   const allAlbums = useSelector(selectAllAlbums);
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       navigate('/');
     }
     dispatch(fetchAlbums());
-
   }, [navigate, user, dispatch]);
 
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
         <div className="add-track-page">
-          <TrackForm albums={allAlbums}/>
+          <TrackForm albums={allAlbums} />
         </div>
       </div>
     </>

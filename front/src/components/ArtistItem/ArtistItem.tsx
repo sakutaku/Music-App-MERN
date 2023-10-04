@@ -9,23 +9,22 @@ import { changeStatus, deleteArtist, fetchArtists } from '../../store/artistsThu
 import './ArtistItem.css';
 
 interface Props {
-  artist: IArtist
+  artist: IArtist;
 }
-const ArtistItem: React.FC<Props> = ({artist}) => {
+
+const ArtistItem: React.FC<Props> = ({ artist }) => {
   const dispatch = useAppDispatch();
   const image = apiUrl + '/' + artist.image;
   const user = useSelector(selectUser);
 
   const onDeleteClick = async (id: string) => {
     try {
-      if(window.confirm('Do you want to delete this artist?')) {
+      if (window.confirm('Do you want to delete this artist?')) {
         await dispatch(deleteArtist(id));
         await dispatch(fetchArtists());
       }
     } catch (e) {
       alert('Something is wrong!');
-    } finally {
-
     }
   };
 
@@ -38,27 +37,27 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
     }
   };
 
-  if(user?.role === userRoles.admin) {
+  if (user?.role === userRoles.admin) {
     return (
       <div className="artist-item">
         <div className="artist-header">
-          {
-            !artist.isPublished
-              ?
-              <div className="artist-status-wrap">
-                <h3 className="artist-status">Unpublished</h3>
-                <button className="artist-status-btn" onClick={() => onChangeClick(artist._id)}>Publish</button>
-              </div>
-              :
-              null
-          }
-          <button className="artist-delete" onClick={() => onDeleteClick(artist._id)}>X</button>
+          {!artist.isPublished ? (
+            <div className="artist-status-wrap">
+              <h3 className="artist-status">Unpublished</h3>
+              <button className="artist-status-btn" onClick={() => onChangeClick(artist._id)}>
+                Publish
+              </button>
+            </div>
+          ) : null}
+          <button className="artist-delete" onClick={() => onDeleteClick(artist._id)}>
+            X
+          </button>
         </div>
 
         <Link to={`/albums/${artist._id}`} className="artist-link">
           <div>
             <div>
-              <img src={image} alt={artist.title} className="artist-img"/>
+              <img src={image} alt={artist.title} className="artist-img" />
             </div>
             <div className="artist-item-two">
               <span className="artist-span">Best Artist</span>
@@ -70,13 +69,12 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
     );
   }
 
-
-  if(artist.isPublished) {
+  if (artist.isPublished) {
     return (
       <Link to={`/albums/${artist._id}`} className="artist-link">
         <div className="artist-item">
           <div>
-            <img src={image} alt={artist.title} className="artist-img"/>
+            <img src={image} alt={artist.title} className="artist-img" />
           </div>
           <div className="artist-item-two">
             <span className="artist-span">Best Artist</span>
@@ -85,18 +83,18 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
         </div>
       </Link>
     );
-  } else if(!artist.isPublished && artist.user === user?._id) {
+  } else if (!artist.isPublished && artist.user === user?._id) {
     return (
       <div className="artist-item">
         <div className="artist-header">
-              <div className="artist-status-wrap">
-                <h3 className="artist-status">Unpublished</h3>
-              </div>
+          <div className="artist-status-wrap">
+            <h3 className="artist-status">Unpublished</h3>
+          </div>
         </div>
         <Link to={`/albums/${artist._id}`} className="artist-link">
           <div>
             <div>
-              <img src={image} alt={artist.title} className="artist-img"/>
+              <img src={image} alt={artist.title} className="artist-img" />
             </div>
             <div className="artist-item-two">
               <span className="artist-span">Best Artist</span>
@@ -106,11 +104,9 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
         </Link>
       </div>
     );
-  }else {
+  } else {
     return null;
   }
-
-
 };
 
 export default ArtistItem;

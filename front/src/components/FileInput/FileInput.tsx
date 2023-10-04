@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import './FileInput.css';
 
 interface Props {
@@ -7,10 +7,9 @@ interface Props {
   label: string;
 }
 
-const FileInput: React.FC<Props> = ({onChange, name, label}) => {
+const FileInput: React.FC<Props> = ({ onChange, name, label }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [filename, setFilename] = useState('');
-
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -29,7 +28,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label}) => {
   return (
     <>
       <input
-        style={{display: 'none'}}
+        style={{ display: 'none' }}
         type="file"
         name={name}
         onChange={onFileChange}
@@ -37,17 +36,15 @@ const FileInput: React.FC<Props> = ({onChange, name, label}) => {
       />
       <div className="file-input-wrap">
         <div className="input-wrap">
-          <label htmlFor={filename} className="form-label">{label}</label>
-          <input
-            type="text"
-            id={filename}
-            value={filename}
-            className="form-control"
-            readOnly
-          />
+          <label htmlFor={filename} className="form-label">
+            {label}
+          </label>
+          <input type="text" id={filename} value={filename} className="form-control" readOnly />
         </div>
         <div>
-          <button type="button" onClick={activateInput} className="browse-btn">Browse</button>
+          <button type="button" onClick={activateInput} className="browse-btn">
+            Browse
+          </button>
         </div>
       </div>
     </>

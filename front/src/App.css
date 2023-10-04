@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   color: #243238;
@@ -7,15 +7,17 @@ body{
   background: #2d394b;
   user-select: none;
 }
+
 * {
   box-sizing: border-box;
 }
-.container{
+
+.container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.line-one{
+.line-one {
   background: rgba(255, 255, 255, 0.3);
   border-color: transparent;
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.05);
@@ -24,71 +26,84 @@ body{
   border-radius: 4px;
   margin: 0 auto;
 }
+
 .track-artist,
-.trackHistory-title{
+.trackHistory-title {
   color: #fff;
   font-size: 25px;
   letter-spacing: 5px;
   text-align: center;
   text-transform: uppercase;
 }
-.enter{
+
+.enter {
   position: relative;
 }
-.enter-page{
+
+.enter-page {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
-.form{
+
+.form {
   background: #2d394b;
   color: #fff;
   border-color: transparent;
   width: 500px;
-  min-height: 20vh;;
+  min-height: 20vh;
   border-style: solid;
   border-width: 1px;
   border-radius: 15px;
   padding: 20px 10px;
 }
-.form-title{
+
+.form-title {
   text-transform: uppercase;
   letter-spacing: 5px;
   text-align: center;
 }
-.input-wrap{
+
+.input-wrap {
   width: 480px;
 }
-.google-wrap{
+
+.google-wrap {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.form-label{
+
+.form-label {
   display: block;
   margin-bottom: 10px;
   text-align: left;
 }
-.form-control{
+
+.form-control {
   padding: 10px 5px;
   width: 100%;
   border: none;
   margin-bottom: 20px;
 }
-.form-control:focus{
+
+.form-control:focus {
   outline: none;
 }
-.form-control-error{
+
+.form-control-error {
   padding: 10px 5px;
   width: 100%;
   border: 1px solid #f23637;
   margin-bottom: 20px;
 }
-.form-control-error:focus{
+
+.form-control-error:focus {
   outline: #f23637;
 }
-.error{
+
+.error {
   color: #f23637;
   font-size: 12px;
   margin-bottom: 5px;
@@ -96,13 +111,15 @@ body{
   font-weight: lighter;
   letter-spacing: 2px;
 }
-.form-btn{
+
+.form-btn {
   background-color: #f23637;
   border: none;
   padding: 10px 20px;
   color: #fff;
   cursor: pointer;
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -112,10 +129,9 @@ ul {
   justify-content: center;
 }
 
-.youtube-title{
+.youtube-title {
   text-transform: uppercase;
   color: #fff;
   font-weight: lighter;
   letter-spacing: 3px;
 }
-

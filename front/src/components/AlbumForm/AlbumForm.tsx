@@ -17,15 +17,17 @@ const AlbumForm = () => {
     artist: '',
     title: '',
     year: '',
-    image: null
+    image: null,
   });
   const user = useSelector(selectUser);
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const {name, value} = event.target;
+  const inputChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = event.target;
 
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -33,7 +35,7 @@ const AlbumForm = () => {
     const { name, files } = e.target;
 
     if (files) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         [name]: files[0],
       }));
@@ -48,18 +50,17 @@ const AlbumForm = () => {
       return;
     }
     try {
-      if(user) {
+      if (user) {
         const data = {
           user: user._id,
           artist: state.artist,
           title: state.title,
           year: state.year,
-          image: state.image
-        }
+          image: state.image,
+        };
         await dispatch(createAlbum(data)).unwrap();
         navigate('/');
       }
-
     } catch (e) {
       alert('Something is wrong!');
     } finally {
@@ -68,7 +69,7 @@ const AlbumForm = () => {
         artist: '',
         title: '',
         year: '',
-        image: null
+        image: null,
       }));
     }
   };
@@ -77,10 +78,12 @@ const AlbumForm = () => {
     <form className="form" onSubmit={submitFormHandler}>
       <h2 className="form-title">Add new album</h2>
       <div className="input-wrap">
-        <label htmlFor="title" className="form-label">Title</label>
+        <label htmlFor="title" className="form-label">
+          Title
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="title"
           id="title"
           value={state.title}
@@ -88,10 +91,12 @@ const AlbumForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="year" className="form-label">Year</label>
+        <label htmlFor="year" className="form-label">
+          Year
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="year"
           id="year"
           value={state.year}
@@ -99,27 +104,35 @@ const AlbumForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="artist" className="form-label">Artist</label>
-        <select value={state.artist}
-                required
-                onChange={inputChangeHandler}
-                name="artist"
-                id="artist"
-                className="form-control">
-          <option value="" disabled defaultValue="">Select artist</option>
-          {artists.map((item, index) => (
-            item.isPublished
-              ?
-              <option value={item._id} key={index}>{item.title}</option>
-              :
-              null
-          ))}
+        <label htmlFor="artist" className="form-label">
+          Artist
+        </label>
+        <select
+          value={state.artist}
+          required
+          onChange={inputChangeHandler}
+          name="artist"
+          id="artist"
+          className="form-control"
+        >
+          <option value="" disabled defaultValue="">
+            Select artist
+          </option>
+          {artists.map((item, index) =>
+            item.isPublished ? (
+              <option value={item._id} key={index}>
+                {item.title}
+              </option>
+            ) : null,
+          )}
         </select>
       </div>
       <>
-        <FileInput onChange={filesInputChangeHandler} name="image" label="Image:"/>
+        <FileInput onChange={filesInputChangeHandler} name="image" label="Image:" />
       </>
-      <button type="submit" className="form-btn">Add</button>
+      <button type="submit" className="form-btn">
+        Add
+      </button>
     </form>
   );
 };

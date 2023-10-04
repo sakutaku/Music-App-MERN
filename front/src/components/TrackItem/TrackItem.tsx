@@ -4,16 +4,17 @@ import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { selectUser } from '../../store/usersSlice';
 import { createTrackHistory } from '../../store/trackHistoryThunk';
 import { useNavigate } from 'react-router-dom';
-import {addLink, turnYoutube} from "../../store/tracksSlice";
+import { addLink, turnYoutube } from '../../store/tracksSlice';
 import { userRoles } from '../../constants';
-import play from "../../assets/images/play.png";
+import play from '../../assets/images/play.png';
 import { changeStatusTrack, deleteTrack } from '../../store/tracksThunk';
 import './TrackItem.css';
 
 interface Props {
-  track: ITrack
+  track: ITrack;
 }
-const TrackItem: React.FC<Props> = ({track}) => {
+
+const TrackItem: React.FC<Props> = ({ track }) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ const TrackItem: React.FC<Props> = ({track}) => {
       navigate('/');
     } else {
       const data = {
-        track: track._id
-      }
+        track: track._id,
+      };
       try {
         dispatch(createTrackHistory(data));
         dispatch(turnYoutube());
@@ -38,12 +39,12 @@ const TrackItem: React.FC<Props> = ({track}) => {
 
   const onDeleteClick = (id: string) => {
     try {
-      if(window.confirm('Do you want to delete this track?')) {
+      if (window.confirm('Do you want to delete this track?')) {
         dispatch(deleteTrack(id));
         navigate('/');
       }
     } catch (e) {
-      alert('Something is wrong!')
+      alert('Something is wrong!');
     }
   };
 
@@ -56,7 +57,7 @@ const TrackItem: React.FC<Props> = ({track}) => {
     }
   };
 
-  if(user?.role === userRoles.admin) {
+  if (user?.role === userRoles.admin) {
     return (
       <div className="track-item">
         <div>
@@ -66,25 +67,21 @@ const TrackItem: React.FC<Props> = ({track}) => {
               <button className="track-delete" onClick={() => onDeleteClick(track._id)}></button>
             </span>
           </h3>
-          {
-            !track.isPublished
-              ?
-              <div className="track-status-wrap">
-                Unpublished
-                <button className="track-status-btn" onClick={() => onChangeClick(track._id)}>Publish</button>
-              </div>
-              :
-              null
-          }
+          {!track.isPublished ? (
+            <div className="track-status-wrap">
+              Unpublished
+              <button className="track-status-btn" onClick={() => onChangeClick(track._id)}>
+                Publish
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className="track-info">
-          {user ?
+          {user ? (
             <button className="play-btn" type="button" onClick={onPlayClick}>
-              <img src={play} alt="play" className="track-play"/>
+              <img src={play} alt="play" className="track-play" />
             </button>
-            :
-            null
-          }
+          ) : null}
           <div className="line-one"></div>
           <div className="track-duration">
             <i>{track.duration} minutes</i>
@@ -94,25 +91,21 @@ const TrackItem: React.FC<Props> = ({track}) => {
     );
   }
 
-  if(!track.isPublished && user?._id === track.user) {
+  if (!track.isPublished && user?._id === track.user) {
     return (
       <div className="track-item">
         <div>
           <h3 className="track-title">
             {track.title} № {track.number}
           </h3>
-              <div className="track-status-wrap">
-                Unpublished
-              </div>
+          <div className="track-status-wrap">Unpublished</div>
         </div>
         <div className="track-info">
-          {user ?
+          {user ? (
             <button className="play-btn" type="button" onClick={onPlayClick}>
-              <img src={play} alt="play" className="track-play"/>
+              <img src={play} alt="play" className="track-play" />
             </button>
-            :
-            null
-          }
+          ) : null}
           <div className="line-one"></div>
           <div className="track-duration">
             <i>{track.duration} minutes</i>
@@ -122,7 +115,7 @@ const TrackItem: React.FC<Props> = ({track}) => {
     );
   }
 
-  if(track.isPublished) {
+  if (track.isPublished) {
     return (
       <div className="track-item">
         <div>
@@ -131,13 +124,11 @@ const TrackItem: React.FC<Props> = ({track}) => {
           </h3>
         </div>
         <div className="track-info">
-          {user ?
+          {user ? (
             <button className="play-btn" type="button" onClick={onPlayClick}>
-              <img src={play} alt="play" className="track-play"/>
+              <img src={play} alt="play" className="track-play" />
             </button>
-            :
-            null
-          }
+          ) : null}
           <div className="line-one"></div>
           <div className="track-duration">
             <i>{track.duration} minutes</i>

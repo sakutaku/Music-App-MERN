@@ -3,9 +3,9 @@ import { artistsReducer } from '../store/artistsSlice';
 import { albumsReducer } from '../store/albumsSlice';
 import { tracksReducer } from '../store/tracksSlice';
 import { usersReducer } from '../store/usersSlice';
-import { persistReducer, persistStore} from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { FLUSH, PAUSE, PERSIST , PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import { tracksHistoryReducer } from '../store/trackHistorySlice';
 
 const usersPersistConfig = {
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   tracks: tracksReducer,
   trackHistory: tracksHistoryReducer,
   users: persistReducer(usersPersistConfig, usersReducer),
-})
+});
 
 export const store = configureStore({
   reducer: rootReducer,

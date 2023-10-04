@@ -14,15 +14,15 @@ const ArtistForm = () => {
     user: '',
     title: '',
     description: '',
-    image: null
+    image: null,
   });
   const user = useSelector(selectUser);
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
 
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -30,7 +30,7 @@ const ArtistForm = () => {
     const { name, files } = e.target;
 
     if (files) {
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         [name]: files[0],
       }));
@@ -45,13 +45,13 @@ const ArtistForm = () => {
       return;
     }
     try {
-      if(user) {
+      if (user) {
         const data = {
           user: user._id,
           title: state.title,
           description: state.description,
-          image: state.image
-        }
+          image: state.image,
+        };
         await dispatch(createArtists(data)).unwrap();
         navigate('/');
       }
@@ -62,7 +62,7 @@ const ArtistForm = () => {
         user: '',
         title: '',
         description: '',
-        image: null
+        image: null,
       }));
     }
   };
@@ -71,10 +71,12 @@ const ArtistForm = () => {
     <form className="form" onSubmit={submitFormHandler}>
       <h2 className="form-title">Add new artist</h2>
       <div className="input-wrap">
-        <label htmlFor="title" className="form-label">Title</label>
+        <label htmlFor="title" className="form-label">
+          Title
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="title"
           id="title"
           value={state.title}
@@ -82,7 +84,9 @@ const ArtistForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="description" className="form-label">Description</label>
+        <label htmlFor="description" className="form-label">
+          Description
+        </label>
         <textarea
           className="form-control"
           name="description"
@@ -92,9 +96,11 @@ const ArtistForm = () => {
         />
       </div>
       <>
-        <FileInput onChange={filesInputChangeHandler} name="image" label="Image:"/>
+        <FileInput onChange={filesInputChangeHandler} name="image" label="Image:" />
       </>
-      <button type="submit" className="form-btn">Add</button>
+      <button type="submit" className="form-btn">
+        Add
+      </button>
     </form>
   );
 };

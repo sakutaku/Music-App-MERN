@@ -9,9 +9,10 @@ import { fetchArtists } from '../../store/artistsThunk';
 import { selectUser } from '../../store/usersSlice';
 
 interface Props {
-  albums: IAllAlbums[]
+  albums: IAllAlbums[];
 }
-const TrackForm: React.FC<Props>= ({albums}) => {
+
+const TrackForm: React.FC<Props> = ({ albums }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const artists = useSelector(selectArtists);
@@ -23,26 +24,28 @@ const TrackForm: React.FC<Props>= ({albums}) => {
     duration: '',
     number: '',
     link: '',
-    user: ''
+    user: '',
   });
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(fetchArtists());
   }, [dispatch]);
 
   const arr: IAllAlbums[] = [];
 
   albums.filter((alb) => {
-    if(alb.artist === state.artist) {
+    if (alb.artist === state.artist) {
       arr.push(alb);
     }
-  })
+  });
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const {name, value} = event.target;
+  const inputChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = event.target;
 
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -54,14 +57,14 @@ const TrackForm: React.FC<Props>= ({albums}) => {
       return;
     }
     try {
-      if(user) {
+      if (user) {
         const data: ITrackMutationPost = {
           album: state.album,
           title: state.title,
           duration: state.duration,
           number: state.number,
           link: state.link,
-          user: user?._id
+          user: user?._id,
         };
 
         await dispatch(createTrack(data)).unwrap();
@@ -70,15 +73,15 @@ const TrackForm: React.FC<Props>= ({albums}) => {
     } catch (e) {
       alert('Something is wrong!');
     } finally {
-        setState(() => ({
-          artist: '',
-          album: '',
-          title: '',
-          duration: '',
-          number: '',
-          link: '',
-          user: ''
-        }));
+      setState(() => ({
+        artist: '',
+        album: '',
+        title: '',
+        duration: '',
+        number: '',
+        link: '',
+        user: '',
+      }));
     }
   };
 
@@ -86,10 +89,12 @@ const TrackForm: React.FC<Props>= ({albums}) => {
     <form className="form" onSubmit={submitFormHandler}>
       <h2 className="form-title">Add new Track</h2>
       <div className="input-wrap">
-        <label htmlFor="title" className="form-label">Title</label>
+        <label htmlFor="title" className="form-label">
+          Title
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="title"
           id="title"
           value={state.title}
@@ -97,10 +102,12 @@ const TrackForm: React.FC<Props>= ({albums}) => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="duration" className="form-label">Duration</label>
+        <label htmlFor="duration" className="form-label">
+          Duration
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="duration"
           id="duration"
           value={state.duration}
@@ -109,10 +116,12 @@ const TrackForm: React.FC<Props>= ({albums}) => {
       </div>
 
       <div className="input-wrap">
-        <label htmlFor="number" className="form-label">Track №</label>
+        <label htmlFor="number" className="form-label">
+          Track №
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="number"
           id="number"
           value={state.number}
@@ -121,10 +130,12 @@ const TrackForm: React.FC<Props>= ({albums}) => {
       </div>
 
       <div className="input-wrap">
-        <label htmlFor="link" className="form-label">YouTube link</label>
+        <label htmlFor="link" className="form-label">
+          YouTube link
+        </label>
         <input
           type="text"
-          className='form-control'
+          className="form-control"
           name="link"
           id="link"
           value={state.link}
@@ -132,45 +143,58 @@ const TrackForm: React.FC<Props>= ({albums}) => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="artist" className="form-label">Artist</label>
-        <select value={state.artist}
-                required
-                onChange={inputChangeHandler}
-                name="artist"
-                id="artist"
-                className="form-control">
-          <option value="" disabled defaultValue="">Select artist</option>
-          {artists.map((item, index) => (
-            item.isPublished
-              ?
-            <option value={item._id} key={index}>{item.title}</option>
-              :
-            null
-          ))}
+        <label htmlFor="artist" className="form-label">
+          Artist
+        </label>
+        <select
+          value={state.artist}
+          required
+          onChange={inputChangeHandler}
+          name="artist"
+          id="artist"
+          className="form-control"
+        >
+          <option value="" disabled defaultValue="">
+            Select artist
+          </option>
+          {artists.map((item, index) =>
+            item.isPublished ? (
+              <option value={item._id} key={index}>
+                {item.title}
+              </option>
+            ) : null,
+          )}
         </select>
       </div>
       <div className="input-wrap">
-        <label htmlFor="album" className="form-label">Album</label>
-        <select value={state.album}
-                required
-                onChange={inputChangeHandler}
-                name="album"
-                id="album"
-                className="form-control">
-          <option value="" disabled defaultValue="">Select album</option>
-          {arr.map((item, index) => (
-            item.isPublished
-              ?
-              <option value={item._id} key={index}>{item.title}</option>
-              :
-              null
-          ))}
+        <label htmlFor="album" className="form-label">
+          Album
+        </label>
+        <select
+          value={state.album}
+          required
+          onChange={inputChangeHandler}
+          name="album"
+          id="album"
+          className="form-control"
+        >
+          <option value="" disabled defaultValue="">
+            Select album
+          </option>
+          {arr.map((item, index) =>
+            item.isPublished ? (
+              <option value={item._id} key={index}>
+                {item.title}
+              </option>
+            ) : null,
+          )}
         </select>
       </div>
 
-      <button type="submit" className="form-btn">Add</button>
+      <button type="submit" className="form-btn">
+        Add
+      </button>
     </form>
-
   );
 };
 

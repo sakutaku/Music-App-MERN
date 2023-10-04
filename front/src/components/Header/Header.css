@@ -1,53 +1,61 @@
-.header{
+.header {
   align-items: center;
   background: #2d394b;
   height: 80px;
   left: 0;
   padding: 10px 70px 10px 30px;
 }
-.header-inner{
+
+.header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.enter-link{
+
+.enter-link {
   color: #fff;
   text-decoration: none;
   font-size: 20px;
 }
-.enter-link:hover{
+
+.enter-link:hover {
   text-decoration: underline;
 }
-.logo{
+
+.logo {
   width: 65px;
   height: 65px;
 }
-.user-hello{
+
+.user-hello {
   margin-left: auto;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.logout-btn{
+
+.logout-btn {
   margin-left: 30px;
   cursor: pointer;
   background-color: transparent;
-  background-image: url("../../assets/images/logout.svg");
+  background-image: url('../../assets/images/logout.svg');
   padding: 15px;
   background-repeat: no-repeat;
   background-size: 20px;
   border: none;
   background-position: center;
 }
-.login-link{
+
+.login-link {
   margin-right: 20px;
 }
-.form-control-header{
+
+.form-control-header {
   margin: 0 0 0 8px;
   padding: 8px 5px;
 }
 
-.form-control-header:focus{
+.form-control-header:focus {
   outline: none;
 }

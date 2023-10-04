@@ -1,17 +1,19 @@
-.track-album{
+.track-album {
   color: #fff;
   font-size: 20px;
   letter-spacing: 5px;
   text-align: center;
 }
-.tracks-header{
+
+.tracks-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   width: 300px;
 }
-.track-link{
+
+.track-link {
   margin-left: 30px;
   cursor: pointer;
   border-radius: 20px;

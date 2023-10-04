@@ -6,10 +6,10 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 const Enter = () => {
   return (
     <>
-      <Layout/>
+      <Layout />
       <div className="container">
         <div className="register-page">
-          <RegisterForm/>
+          <RegisterForm />
         </div>
       </div>
     </>

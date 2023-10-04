@@ -1,9 +1,10 @@
-.backdrop{
+.backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(252, 11, 104, 0.3);
 }
-.modal{
+
+.modal {
   background-color: #000;
   width: 500px;
   padding: 15px;
@@ -14,13 +15,15 @@
   right: -50%;
   margin: 0 auto;
 }
-.modal-btn{
+
+.modal-btn {
   color: #fff;
   font-size: 22px;
   font-weight: bolder;
   text-align: right;
   cursor: pointer;
 }
-.youtube-wrap{
+
+.youtube-wrap {
   text-align: center;
 }

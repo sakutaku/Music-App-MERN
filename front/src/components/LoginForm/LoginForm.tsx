@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LoginMutation} from '../../type';
+import { LoginMutation } from '../../type';
 import { useAppDispatch } from '../../app/hook';
 import { useSelector } from 'react-redux';
 import { selectLoginError } from '../../store/usersSlice';
@@ -10,16 +10,16 @@ import { GoogleLogin } from '@react-oauth/google';
 const LoginForm = () => {
   const [state, setState] = useState<LoginMutation>({
     username: '',
-    password: ''
+    password: '',
   });
   const dispatch = useAppDispatch();
   const error = useSelector(selectLoginError);
   const navigate = useNavigate();
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = event.target;
+    const { name, value } = event.target;
 
-    setState(prevState => {
-      return {...prevState, [name]: value};
+    setState((prevState) => {
+      return { ...prevState, [name]: value };
     });
   };
 
@@ -33,7 +33,7 @@ const LoginForm = () => {
     } finally {
       setState(() => ({
         username: '',
-        password: ''
+        password: '',
       }));
     }
   };
@@ -53,7 +53,7 @@ const LoginForm = () => {
       <div className="input-wrap google-wrap">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            if(credentialResponse.credential) {
+            if (credentialResponse.credential) {
               void googleLoginHandler(credentialResponse.credential);
             }
           }}
@@ -63,10 +63,10 @@ const LoginForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="username" className="form-label">Username</label>
-        {
-          error ?   <span className="error">{error.error}</span> : null
-        }
+        <label htmlFor="username" className="form-label">
+          Username
+        </label>
+        {error ? <span className="error">{error.error}</span> : null}
         <input
           type="text"
           className={error ? 'form-control-error' : 'form-control'}
@@ -77,10 +77,10 @@ const LoginForm = () => {
         />
       </div>
       <div className="input-wrap">
-        <label htmlFor="password" className="form-label">Password</label>
-        {
-          error ?   <span className="error">{error.error}</span> : null
-        }
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
+        {error ? <span className="error">{error.error}</span> : null}
         <input
           type="password"
           className={error ? 'form-control-error' : 'form-control'}
@@ -90,7 +90,9 @@ const LoginForm = () => {
           onChange={inputChangeHandler}
         />
       </div>
-      <button type="submit" className="form-btn">Log in</button>
+      <button type="submit" className="form-btn">
+        Log in
+      </button>
     </form>
   );
 };

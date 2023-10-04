@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {createTrackHistory, fetchTrackHistory} from './trackHistoryThunk';
+import { createTrackHistory, fetchTrackHistory } from './trackHistoryThunk';
 import { RootState } from '../app/store';
-import {ITrackHistory} from "../type";
+import { ITrackHistory } from '../type';
 
 interface trackHistoryState {
   fetchLoading: boolean;
@@ -19,7 +19,7 @@ const trackHistorySlice = createSlice({
   name: 'trackHistory',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchTrackHistory.pending, (state) => {
       state.fetchLoading = true;
     });
@@ -39,7 +39,7 @@ const trackHistorySlice = createSlice({
     builder.addCase(createTrackHistory.rejected, (state) => {
       state.createLoading = false;
     });
-  }
+  },
 });
 
 export const tracksHistoryReducer = trackHistorySlice.reducer;

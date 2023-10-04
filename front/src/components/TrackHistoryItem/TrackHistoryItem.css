@@ -11,21 +11,25 @@ li {
   position: relative;
   padding: 20px;
   border: 20px solid rgba(123, 14, 14, 0);
-  background: linear-gradient(#e71e07 0 0) content-box,
-  linear-gradient(var(--c, #ffffff) 0 0) padding-box,
-  linear-gradient(var(--d, 90deg), #0000 75%, #2d394b 0) border-box;
+  background:
+    linear-gradient(#e71e07 0 0) content-box,
+    linear-gradient(var(--c, #ffffff) 0 0) padding-box,
+    linear-gradient(var(--d, 90deg), #0000 75%, #2d394b 0) border-box;
 }
+
 li:nth-child(even) {
   grid-column-end: -1;
   --d: -90deg;
   --c: #ffffff;
 }
+
 li:not(:last-child) {
   margin-bottom: -20px;
 }
+
 li:before,
 li:after {
-  content: "";
+  content: '';
   display: block;
   height: 0.6em;
 }
@@ -38,27 +42,29 @@ time {
   transform: translateY(-50%);
   white-space: nowrap;
 }
+
 li:nth-child(even) time {
   left: auto;
   color: #fff;
   right: calc(100% + 50px);
 }
+
 time:before {
-  content: "";
+  content: '';
   position: absolute;
   height: 10px;
   top: calc(50% - 5px);
   right: calc(100% + 5px);
   width: 65px;
-  background: repeating-linear-gradient(-90deg, #ffffff 0 5px, #0000 0 10px) 50%/100%
-  2px no-repeat;
+  background: repeating-linear-gradient(-90deg, #ffffff 0 5px, #0000 0 10px) 50%/100% 2px no-repeat;
 }
+
 li:nth-child(even) time:before {
   right: auto;
   left: calc(100% + 5px);
-  background: repeating-linear-gradient(90deg, #ffffff 0 5px, #0000 0 10px) 50%/100%
-  2px no-repeat;
+  background: repeating-linear-gradient(90deg, #ffffff 0 5px, #0000 0 10px) 50%/100% 2px no-repeat;
 }
-.trackHistory-artist{
+
+.trackHistory-artist {
   display: block;
 }

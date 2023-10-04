@@ -15,37 +15,27 @@ const Artists = () => {
   const show = useSelector(selectFetchLoading);
   const user = useSelector(selectUser);
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(fetchArtists());
   }, [dispatch]);
 
-  let items: React.ReactNode = <Spinner/>;
+  let items: React.ReactNode = <Spinner />;
 
-  if(!show) {
-    items = artists.map((artist) => (
-      <ArtistItem
-        key={artist._id}
-        artist={artist}
-      />
-    ));
+  if (!show) {
+    items = artists.map((artist) => <ArtistItem key={artist._id} artist={artist} />);
   }
 
   return (
     <div className="artists-page">
-      {
-        user
-          ?
-          <div className="artists-link">
-            <Link to="/artist-add" className="add-artist-link">Add artist</Link>
-          </div>
-          :
-          null
-      }
-      <div className="artists">
-        {items}
-      </div>
+      {user ? (
+        <div className="artists-link">
+          <Link to="/artist-add" className="add-artist-link">
+            Add artist
+          </Link>
+        </div>
+      ) : null}
+      <div className="artists">{items}</div>
     </div>
-
   );
 };
 

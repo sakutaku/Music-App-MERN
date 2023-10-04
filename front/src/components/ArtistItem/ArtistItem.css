@@ -1,4 +1,4 @@
-.artist-item{
+.artist-item {
   width: 400px;
   height: 600px;
   display: flex;
@@ -6,36 +6,42 @@
   color: #828590;
   background: #ffffff;
   border-radius: 6px;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
   margin: 30px 20px 30px;
 }
-.artist-item:hover{
+
+.artist-item:hover {
   transform: rotate(0deg) scale(1) translateY(10px);
-  transition: .5s all ease;
+  transition: 0.5s all ease;
   z-index: 400;
 }
-.artist-header{
+
+.artist-header {
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.artist-item-two{
+
+.artist-item-two {
   text-align: center;
   padding: 20px;
 }
-.artist-img{
+
+.artist-img {
   width: 400px;
   height: 400px;
 }
-.artist-title{
+
+.artist-title {
   color: #fc0b68;
   letter-spacing: 3px;
   font-weight: lighter;
   text-transform: uppercase;
 }
-.artist-span{
+
+.artist-span {
   display: inline-block;
   padding: 0 9px;
   font-weight: 100;
@@ -46,16 +52,18 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF23637', endColorstr='#FFFC0B68', GradientType=1);
   border-radius: 2px;
 }
-.artist-link{
+
+.artist-link {
   text-decoration: none;
 }
 
-.artist-status{
+.artist-status {
   margin: 0;
   color: #828590;
   font-weight: lighter;
 }
-.artist-status-btn{
+
+.artist-status-btn {
   background: transparent;
   border: 1px solid #fc0b68;
   border-radius: 10px;
@@ -64,18 +72,21 @@
   cursor: pointer;
   transition-duration: 0.3s;
 }
-.artist-status-btn:hover{
+
+.artist-status-btn:hover {
   background: #fc0b68;
   color: #fff;
 }
-.artist-delete{
+
+.artist-delete {
   background: transparent;
   border: 1px solid #fc0b68;
   cursor: pointer;
   color: #fc0b68;
   transition-duration: 0.3s;
 }
-.artist-delete:hover{
+
+.artist-delete:hover {
   background: #fc0b68;
   color: #fff;
 }

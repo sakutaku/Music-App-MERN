@@ -1,6 +1,12 @@
 import { IAlbum, IAllAlbums } from '../type';
 import { createSlice } from '@reduxjs/toolkit';
-import { changeStatusAlbum, createAlbum, deleteAlbum, fetchAlbum, fetchAlbums } from './albumsThunk';
+import {
+  changeStatusAlbum,
+  createAlbum,
+  deleteAlbum,
+  fetchAlbum,
+  fetchAlbums,
+} from './albumsThunk';
 import { RootState } from '../app/store';
 
 interface albumsState {
@@ -22,14 +28,14 @@ const initialState: albumsState = {
   id: '',
   createLoading: false,
   deleteLoading: false,
-  changeLoading: false
+  changeLoading: false,
 };
 
 const albumsSlice = createSlice({
   name: 'album',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(fetchAlbum.pending, (state) => {
       state.fetchLoading = true;
     });
@@ -37,7 +43,7 @@ const albumsSlice = createSlice({
       state.fetchLoading = false;
       state.albums = action.payload.albums;
       state.artist = action.payload.artist;
-      state.id = action.payload.id
+      state.id = action.payload.id;
     });
     builder.addCase(fetchAlbum.rejected, (state) => {
       state.fetchLoading = false;
@@ -79,7 +85,7 @@ const albumsSlice = createSlice({
     builder.addCase(changeStatusAlbum.rejected, (state) => {
       state.changeLoading = false;
     });
-  }
+  },
 });
 
 export const albumsReducer = albumsSlice.reducer;

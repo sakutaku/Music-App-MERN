@@ -1,7 +1,8 @@
-.album-link{
+.album-link {
   text-decoration: none;
 }
-.album-container{
+
+.album-container {
   margin: 0 auto 40px;
   width: 400px;
   background: transparent;
@@ -9,20 +10,22 @@
   border-radius: 10%;
   position: relative;
   z-index: 0;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
-.album-wrap{
+.album-wrap {
   display: flex;
   align-items: center;
 }
-.album-img{
+
+.album-img {
   width: 100px;
   height: 100px;
   z-index: 1;
 }
-.album-txt{
+
+.album-txt {
   text-decoration: none;
   margin-left: 10px;
   color: #fff;
@@ -30,30 +33,34 @@
   z-index: 1;
   font-weight: lighter;
 }
-.album-txt h3{
+
+.album-txt h3 {
   font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.album-delete{
+
+.album-delete {
   margin-left: auto;
   background: transparent;
   border: 1px solid #fff;
   color: #fff;
   cursor: pointer;
   font-weight: bolder;
-
 }
-.tracks-year{
+
+.tracks-year {
   font-size: 20px;
   margin: 12px 0;
 }
-.tracks-total{
+
+.tracks-total {
   margin: 5px 0;
   font-size: 15px;
 }
-.album-status-btn{
+
+.album-status-btn {
   background: transparent;
   border: 1px solid #fff;
   border-radius: 10px;
@@ -62,11 +69,13 @@
   transition-duration: 0.3s;
   margin-left: 10px;
 }
-.album-status-btn:hover{
+
+.album-status-btn:hover {
   background: #fff;
   color: #fc0b68;
 }
-.album-delete-wrap{
+
+.album-delete-wrap {
   display: flex;
   align-items: center;
 }

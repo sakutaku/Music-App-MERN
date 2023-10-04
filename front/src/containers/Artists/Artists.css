@@ -1,18 +1,21 @@
-.artists{
+.artists {
   margin: 40px 0 70px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.artists-page{
+
+.artists-page {
   margin-top: 40px;
 }
-.artists-link{
+
+.artists-link {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.add-artist-link{
+
+.add-artist-link {
   margin-left: 30px;
   cursor: pointer;
   border-radius: 20px;
