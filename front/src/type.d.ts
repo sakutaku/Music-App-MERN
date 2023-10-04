@@ -106,7 +106,8 @@ export interface IAllAlbums {
   _id: string,
   artist: string,
   title: string,
-  user: string
+  user: string,
+  isPublished: boolean,
 }
 
 export interface ITrackMutationPost {

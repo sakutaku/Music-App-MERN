@@ -1,6 +1,6 @@
 import React from 'react';
 import { IArtist } from '../../type';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/usersSlice';
 import { apiUrl, userRoles } from '../../constants';
@@ -13,7 +13,6 @@ interface Props {
 }
 const ArtistItem: React.FC<Props> = ({artist}) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const image = apiUrl + '/' + artist.image;
   const user = useSelector(selectUser);
 
@@ -23,7 +22,6 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
         await dispatch(deleteArtist(id));
         await dispatch(fetchArtists());
       }
-
     } catch (e) {
       alert('Something is wrong!');
     } finally {
@@ -31,10 +29,10 @@ const ArtistItem: React.FC<Props> = ({artist}) => {
     }
   };
 
-  const onChangeClick = (id: string) => {
+  const onChangeClick = async (id: string) => {
     try {
       dispatch(changeStatus(id));
-      navigate('/');
+      await dispatch(fetchArtists());
     } catch (e) {
       alert('Something is wrong!');
     }

@@ -32,7 +32,7 @@ const AlbumItem: React.FC<Props> = ({album}) => {
 
   const onChangeClick = async (id: string) => {
     try {
-      await dispatch(changeStatusAlbum(id));
+      dispatch(changeStatusAlbum(id));
       navigate('/');
     } catch (e) {
       alert('Something is wrong!');

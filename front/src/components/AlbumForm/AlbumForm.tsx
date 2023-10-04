@@ -108,7 +108,11 @@ const AlbumForm = () => {
                 className="form-control">
           <option value="" disabled defaultValue="">Select artist</option>
           {artists.map((item, index) => (
-            <option value={item._id} key={index}>{item.title}</option>
+            item.isPublished
+              ?
+              <option value={item._id} key={index}>{item.title}</option>
+              :
+              null
           ))}
         </select>
       </div>

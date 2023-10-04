@@ -141,7 +141,11 @@ const TrackForm: React.FC<Props>= ({albums}) => {
                 className="form-control">
           <option value="" disabled defaultValue="">Select artist</option>
           {artists.map((item, index) => (
+            item.isPublished
+              ?
             <option value={item._id} key={index}>{item.title}</option>
+              :
+            null
           ))}
         </select>
       </div>
@@ -155,7 +159,11 @@ const TrackForm: React.FC<Props>= ({albums}) => {
                 className="form-control">
           <option value="" disabled defaultValue="">Select album</option>
           {arr.map((item, index) => (
-            <option value={item._id} key={index}>{item.title}</option>
+            item.isPublished
+              ?
+              <option value={item._id} key={index}>{item.title}</option>
+              :
+              null
           ))}
         </select>
       </div>
