@@ -100,9 +100,6 @@ const TrackItem: React.FC<Props> = ({track}) => {
         <div>
           <h3 className="track-title">
             {track.title} № {track.number}
-            <span className="track-delete-wrap">
-              <button className="track-delete" onClick={() => onDeleteClick(track._id)}></button>
-            </span>
           </h3>
               <div className="track-status-wrap">
                 Unpublished

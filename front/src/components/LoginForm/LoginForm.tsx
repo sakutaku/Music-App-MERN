@@ -4,7 +4,8 @@ import { useAppDispatch } from '../../app/hook';
 import { useSelector } from 'react-redux';
 import { selectLoginError } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
-import { fetchLogin } from '../../store/usersThunk';
+import { fetchGoogleLogin, fetchLogin } from '../../store/usersThunk';
+import { GoogleLogin } from '@react-oauth/google';
 
 const LoginForm = () => {
   const [state, setState] = useState<LoginMutation>({
@@ -37,9 +38,30 @@ const LoginForm = () => {
     }
   };
 
+  const googleLoginHandler = async (credential: string) => {
+    try {
+      await dispatch(fetchGoogleLogin(credential)).unwrap();
+      navigate('/');
+    } catch (e) {
+      alert('Something is wrong!');
+    }
+  };
+
   return (
     <form className="form" onSubmit={submitFormHandler}>
       <h2 className="form-title">Login</h2>
+      <div className="input-wrap google-wrap">
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            if(credentialResponse.credential) {
+              void googleLoginHandler(credentialResponse.credential);
+            }
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
+        />
+      </div>
       <div className="input-wrap">
         <label htmlFor="username" className="form-label">Username</label>
         {

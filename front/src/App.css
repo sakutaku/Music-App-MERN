@@ -59,6 +59,12 @@ body{
 .input-wrap{
   width: 480px;
 }
+.google-wrap{
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .form-label{
   display: block;
   margin-bottom: 10px;
