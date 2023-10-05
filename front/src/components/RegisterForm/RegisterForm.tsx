@@ -5,11 +5,14 @@ import { useSelector } from 'react-redux';
 import { clearUser, selectRegisterError } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
 import { fetchRegister } from '../../store/usersThunk';
+import FileInput from '../FileInput/FileInput';
 
 const RegisterForm = () => {
   const [state, setState] = useState<RegisterMutation>({
     username: '',
     password: '',
+    displayName: '',
+    avatar: null,
   });
   const dispatch = useAppDispatch();
   const error = useSelector(selectRegisterError);
@@ -43,6 +46,19 @@ const RegisterForm = () => {
       setState(() => ({
         username: '',
         password: '',
+        displayName: '',
+        avatar: null,
+      }));
+    }
+  };
+
+  const filesInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = e.target;
+
+    if (files) {
+      setState((prevState) => ({
+        ...prevState,
+        [name]: files[0],
       }));
     }
   };
@@ -82,6 +98,22 @@ const RegisterForm = () => {
           onChange={inputChangeHandler}
         />
       </div>
+      <div className="input-wrap">
+        <label htmlFor="displayName" className="form-label">
+          Name
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          name="displayName"
+          id="displayName"
+          value={state.displayName}
+          onChange={inputChangeHandler}
+        />
+      </div>
+      <>
+        <FileInput onChange={filesInputChangeHandler} name="image" label="Image:" />
+      </>
       <button type="submit" className="form-btn">
         Sign up
       </button>

@@ -5,11 +5,14 @@ import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { selectUser } from '../../store/usersSlice';
 import { logout } from '../../store/usersThunk';
 import './Header.css';
+import { apiUrl } from '../../constants';
+import Accordion from './Accordion';
 
 const Header = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  let img = '';
 
   const handleLogout = () => {
     if (window.confirm('Do you want to logout?')) {
@@ -17,6 +20,12 @@ const Header = () => {
       navigate('/');
     }
   };
+
+  if (user?.googleID) {
+    img = user.avatar;
+  } else {
+    img = apiUrl + '/' + user?.avatar;
+  }
 
   return (
     <header className="header">
@@ -29,11 +38,16 @@ const Header = () => {
             Tracks History
           </Link>
           <div className="user-hello">
-            <span>Hello, {user.username}!</span>
+            <span>Hello, {user.displayName}!</span>
+            <span>
+              <img src={img} alt="avatar" className="header-avatar" />
+            </span>
             <div>
-              <Link to="/tracks-add" className="track-link">
-                Add track
-              </Link>
+              <>
+                <div>
+                  <Accordion />
+                </div>
+              </>
             </div>
             <div>
               <button className="logout-btn" onClick={handleLogout}></button>
