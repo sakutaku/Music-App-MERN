@@ -4,14 +4,12 @@ import User from '../modeles/User';
 import crypto from 'crypto';
 import { OAuth2Client } from 'google-auth-library';
 import config from '../config';
-import {imagesUpload} from "../multer";
+import { imagesUpload } from '../multer';
 
 const usersRouter = express.Router();
 const client = new OAuth2Client(config.google.clientId);
 
-
-
-usersRouter.post('/',  imagesUpload.single('image'), async (req, res, next) => {
+usersRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
   try {
     const user = new User({
       username: req.body.username,
@@ -99,11 +97,9 @@ usersRouter.post('/google', async (req, res, next) => {
         password: crypto.randomUUID(),
         googleID: id,
         displayName,
-        avatar
+        avatar,
       });
     }
-
-    console.log(user);
 
     user.generateToken();
     await user.save();

@@ -7,8 +7,10 @@ const SALT_WORK_FACTOR = 10;
 
 interface IUserMethods {
   checkPassword(password: string): Promise<boolean>;
+
   generateToken(): void;
 }
+
 type UserModel = Model<IUser, {}, IUserMethods>;
 
 const UserSchema = new mongoose.Schema({
@@ -44,7 +46,7 @@ const UserSchema = new mongoose.Schema({
   },
   displayName: {
     type: String,
-    required: true
+    required: true,
   },
   avatar: String,
   googleID: String,
