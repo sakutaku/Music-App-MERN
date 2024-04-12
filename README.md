@@ -13,9 +13,11 @@ To start the project, you need to do the following:
    `git clone git@github.com:sakutaku/Pizza-Ordering-App.git`
    
 2) Open project in the terminal an go to backend folder and write following commands:
+   
    `npm i && npm run seed`
    and
    `npm run dev`
+   
 3) Open frontend foler and write following command:
 
    `npm i && npm run start`
