@@ -10,7 +10,7 @@ To start the project, you need to do the following:
 
 1) Clone the project to your Github machine with the command:
    
-   `git clone git@github.com:sakutaku/Pizza-Ordering-App.git`
+   `git clone git@github.com:sakutaku/Music-App-MERN.git`
    
 2) Open project in the terminal an go to backend folder and write following commands:
    
