@@ -18,6 +18,6 @@ To start the project, you need to do the following:
    and
    `npm run dev`
    
-3) Open frontend foler and write following command:
+3) Open frontend folder and write following command:
 
    `npm i && npm run start`
